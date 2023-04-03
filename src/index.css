@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  padding: 3px;
+  margin: 3px;
+}
+
+.mana-symbol {
+  width: 25px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.mainview {
+  width: 60%;
+}
+
+.sidebar {
+  width: 40%;
+}
