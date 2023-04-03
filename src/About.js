@@ -3,7 +3,10 @@ const About = () => {
   return (
     <div>
       <h2>About</h2>
-      <p>SCRYFALL.COM</p>
+      <p>
+        Customizeable, cooperative multiplayer fan-created format of Magic: the
+        Gathering.
+      </p>
     </div>
   );
 };
