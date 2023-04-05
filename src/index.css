@@ -37,3 +37,20 @@ a {
 .sidebar {
   width: 40%;
 }
+
+.grixis {
+  background-color: lavender
+}
+.blue {
+  background-color: lightblue;
+}
+.golgari {
+  background-color: greenyellow
+}
+.colorless {
+  background-color: silver;
+}
+
+.dead {
+  background-color: gray;
+}

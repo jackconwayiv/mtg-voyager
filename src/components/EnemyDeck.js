@@ -145,3 +145,4 @@ const EnemyDeck = () => {
     </div>
   );
 };
+export default EnemyDeck;

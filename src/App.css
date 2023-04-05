@@ -19,7 +19,7 @@ h1 {
   
 }
 
-.navContainer, .playerContainer {
+.navContainer, .playerContainer, .nexiiContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
