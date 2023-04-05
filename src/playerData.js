@@ -1,0 +1,43 @@
+const playerData = [
+  {
+    id: 1,
+    name: "Jake",
+    commander: "Kiora",
+    sigSpell: "Rampant Growth",
+    partner: null,
+    faction: "blue",
+    poison: 0,
+    woe: 0,
+    weal: 0,
+    energy: 0,
+    xp: 0,
+  },
+  {
+    id: 2,
+    name: "Rosie",
+    commander: "Huatli",
+    sigSpell: null,
+    partner: "Travel Preparations",
+    faction: "green",
+    poison: 0,
+    woe: 0,
+    weal: 0,
+    energy: 0,
+    xp: 0,
+  },
+  {
+    id: 3,
+    name: "Cash",
+    commander: "Florian",
+    sigSpell: null,
+    partner: null,
+    faction: "red",
+    poison: 0,
+    woe: 0,
+    weal: 0,
+    energy: 0,
+    xp: 0,
+  },
+];
+
+export default playerData;
