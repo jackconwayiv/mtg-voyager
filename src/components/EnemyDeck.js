@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-const NewGame = () => {
-  const [drawnCard, setDrawnCard] = useState({});
+const EnemyDeck = () => {
+  const [library, setLibrary] = useState([]);
+  const [stack, setStack] = useState([]);
+  const [revealed, setRevealed] = useState([]);
+  const [graveyard, setGraveyard] = useState([]);
+  const [exile, setExile] = useState([]);
+
   const cards = [
     {
       name: "Goblin",
@@ -88,37 +93,55 @@ const NewGame = () => {
     //battles, artifacts, enchantments, planeswalkers??
     setDrawnCard(drawnCard);
   };
+
   const renderCardText = () => {
-    return drawnCard.type === "sorcery" ? (
-      <p>{drawnCard.effect}</p>
-    ) : (
-      <p>
-        Encounter a {drawnCard.stats} {drawnCard.color} {drawnCard.name}{" "}
-        creature token with {drawnCard.keyword}.{" "}
-      </p>
-    );
+    if (!drawnCard) return <div>No card drawn.</div>;
+    if (drawnCard.type === "creature") {
+      return (
+        <p>
+          Encounter a {drawnCard.stats} {drawnCard.color} {drawnCard.name}{" "}
+          creature token with {drawnCard.keyword}.{" "}
+        </p>
+      );
+    }
+    return <p>{drawnCard.effect}</p>;
   };
 
+  const [drawnCard, setDrawnCard] = useState({});
+
   useEffect(() => {
-    drawEnemyCard();
+    setLibrary([{}, {}, {}]);
+    setStack([{}, {}, {}]);
+    setRevealed([{}, {}, {}]);
+    setGraveyard([{}, {}, {}]);
+    setExile([{}, {}, {}]);
   }, []);
 
   return (
     <div>
-      <h2>New Game</h2>
+      <p>Library: {JSON.stringify(library)}</p>
       <p>
-        Select colors, challenge level, number of players, starting life totals,
-        setup turns, etc.
+        Stack:
+        {JSON.stringify(stack)}
       </p>
-
-      <p>Click to toggle or set each color of each nexus.</p>
-      {/* This stuff goes in Playing: */}
+      <p>
+        Revealed:
+        {JSON.stringify(revealed)}
+      </p>
+      <p>
+        Graveyard:
+        {JSON.stringify(graveyard)}
+      </p>
+      <p>Exile: {JSON.stringify(exile)}</p>
       <div>
-        <button onClick={() => drawEnemyCard()}>Draw Enemy Card</button>
+        <img
+          src="../cardback.jpg"
+          alt="cardback"
+          width="150px"
+          onClick={() => drawEnemyCard()}
+        />
       </div>
       {renderCardText()}
     </div>
   );
 };
-
-export default NewGame;
