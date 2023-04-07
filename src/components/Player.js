@@ -1,72 +1,112 @@
-import React from "react";
+import React, { useReducer } from "react";
 
-const reducer = (state, action) => {
-  return 4;
-};
+function reducer(state, action) {
+  const res = action.resource;
+  const val = action.value;
+  const newState = { ...state };
+  const newResources = {
+    ...newState.resources,
+    [res]: state.resources[res] + val,
+  };
+  return { ...state, resources: newResources };
+}
 
 const Player = ({ player }) => {
-  const resourceSymbols = {
+  const [state, dispatch] = useReducer(reducer, player);
+
+  const resourceSymbol = {
     life: "❤️",
-    woe: "😥",
-    weal: "💰",
+    woe: "📈",
+    weal: "📉",
     poison: "🐍",
     energy: "⚡",
     xp: "🏅",
+    taxA: "💰",
+    taxB: "💰",
   };
 
-  const renderResources = (player) => {
-    const resourceArray = Object.keys(player.resources);
+  const renderResources = (state, type) => {
+    const presourceArray = Object.keys(state.resources);
+    let resourceArray = [];
+    switch (type) {
+      case "left":
+        resourceArray = [
+          presourceArray[0],
+          presourceArray[1],
+          presourceArray[2],
+        ];
+        break;
+      case "right":
+        resourceArray = [
+          presourceArray[3],
+          presourceArray[4],
+          presourceArray[5],
+        ];
+        break;
+      case "taxA":
+        resourceArray = [presourceArray[6]];
+        break;
+      case "taxB":
+        resourceArray = [presourceArray[7]];
+        break;
+      default:
+        break;
+    }
+
     return resourceArray.map((res) => {
       return (
-        <span>
-          {resourceSymbols[res]} {player.resources[res]}
+        <span className="resourceButtonContainer finePrint" key={res}>
+          <button
+            className="playerButton"
+            disabled={state.resources[res] === 0}
+            onClick={() => {
+              dispatch({ resource: res, value: -1 });
+            }}
+          >
+            -
+          </button>
+          {resourceSymbol[res]} {player && state.resources[res]}
+          <button
+            className="playerButton"
+            onClick={() => {
+              dispatch({ resource: res, value: 1 });
+            }}
+          >
+            +
+          </button>
         </span>
       );
     });
   };
 
   return (
-    <div className={"playercard " + player.faction}>
+    <div
+      className={
+        state.resources.life > 0
+          ? "playercard " + player.faction + "player"
+          : "playercard dead"
+      }
+    >
       <div className="innerPlayerCard">
         <div className="playerTitleColumn">
           <span className="playerName boldened">{player.name}</span>
         </div>
         <div className="resourceColumn">
-          {/* {JSON.stringify(player)} */}
-          {/* {player && player.resources && renderResources()} */}
-          <span className="resourceButtonContainer finePrint">
-            <button className="playerButton">-</button>❤️ 999
-            <button className="playerButton">+</button>
-          </span>
-          <span className="resourceButtonContainer finePrint">
-            <button className="playerButton">-</button>😥 0
-            <button className="playerButton">+</button>
-          </span>
-          <span className="resourceButtonContainer finePrint">
-            <button className="playerButton">-</button>💰 0
-            <button className="playerButton">+</button>
-          </span>
+          {player && player.resources && renderResources(state, "left")}
         </div>
         <div className="resourceColumn">
-          <span className="resourceButtonContainer finePrint">
-            <button className="playerButton">-</button>🐍 0
-            <button className="playerButton">+</button>
-          </span>
-          <span className="resourceButtonContainer finePrint">
-            <button className="playerButton">-</button>⚡ 0
-            <button className="playerButton">+</button>
-          </span>
-          <span className="resourceButtonContainer finePrint">
-            <button className="playerButton">-</button>🏅 0
-            <button className="playerButton">+</button>
-          </span>
+          {player && player.resources && renderResources(state, "right")}
         </div>
       </div>
       <div className="commanderDetails">
-        <span className="finePrint">{player.commander}</span>
-        <span className="finePrint">
-          {player.sigSpell || player.partner || "---"}
-        </span>
+        <div className="commanderTax">
+          <span className="finePrint">{player.commander}</span>
+          {player && player.commander && renderResources(state, "taxA")}
+        </div>
+        <div className="commanderTax">
+          <span className="finePrint">{player.commanderB || " "}</span>
+          {player && player.commanderB && renderResources(state, "taxB")}
+        </div>
       </div>
     </div>
   );

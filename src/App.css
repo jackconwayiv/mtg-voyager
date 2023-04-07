@@ -9,20 +9,38 @@
 .white {
   background-color: #efefd0;
 }
+.whiteplayer {
+  background-color: #f4f4e0;
+}
 .blue {
   background-color: #90e0ef;
+}
+.blueplayer {
+  background-color: #a5e7f5;
 }
 .black {
   background-color: #c8b6ff;
 }
+.blackplayer {
+  background-color: #d3c3ff;
+}
 .red {
   background-color: #f08080;
+}
+.redplayer {
+  background-color: #f68c8c;
 }
 .green {
   background-color: #99d98c;
 }
+.greenplayer {
+  background-color: #a9e29b;
+}
 .colorless {
   background-color: #ced4da;
+}
+.colorlessplayer {
+  background-color: #d8dfe4;
 }
 .grixis {
   background-color: lavender
@@ -73,9 +91,15 @@ h1 {
   
 }
 
-.navContainer, .playerContainer, .nexiiContainer, .roundContainer {
+.navContainer, .playerContainer, .nexiiContainer, .roundContainer{
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+}
+
+.commanderTax {
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -121,7 +145,7 @@ h1 {
 
 .playercard {
   width: 275px;
-  height: 108px;
+  height: 130px;
 }
 
 .innerPlayerCard {

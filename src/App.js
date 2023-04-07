@@ -7,7 +7,7 @@ import Session from "./components/Session";
 function App() {
   const [round, setRound] = useState(0);
   return (
-    <div>
+    <>
       <div className="navWrapper">
         <span className="title">
           <Navbar />
@@ -19,7 +19,7 @@ function App() {
       <div>
         <Session round={round} />
       </div>
-    </div>
+    </>
   );
 }
 
