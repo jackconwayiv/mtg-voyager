@@ -5,23 +5,68 @@ const reducer = (state, action) => {
 };
 
 const Player = ({ player }) => {
-  return (
-    <div className="playercard">
-      <div className="playerContainer">
-        <span>{player.name.toUpperCase()}</span>
-        <span>{player.commander}</span>
-        <span>{player.sigSpell || player.partner || "---"}</span>
-      </div>
-      <div className="playerContainer">
-        {/* map over these to keep it DRY baby */}
+  const resourceSymbols = {
+    life: "❤️",
+    woe: "😥",
+    weal: "💰",
+    poison: "🐍",
+    energy: "⚡",
+    xp: "🏅",
+  };
+
+  const renderResources = (player) => {
+    const resourceArray = Object.keys(player.resources);
+    return resourceArray.map((res) => {
+      return (
         <span>
-          <button>-</button>❤️ 20<button>+</button>
+          {resourceSymbols[res]} {player.resources[res]}
         </span>
-        <span>🐍 0</span>
-        <span>😥 0</span>
-        <span>💰 0</span>
-        <span>⚡ 0</span>
-        <span>🏅 0</span>
+      );
+    });
+  };
+
+  return (
+    <div className={"playercard " + player.faction}>
+      <div className="innerPlayerCard">
+        <div className="playerTitleColumn">
+          <span className="playerName boldened">{player.name}</span>
+        </div>
+        <div className="resourceColumn">
+          {/* {JSON.stringify(player)} */}
+          {/* {player && player.resources && renderResources()} */}
+          <span className="resourceButtonContainer finePrint">
+            <button className="playerButton">-</button>❤️ 999
+            <button className="playerButton">+</button>
+          </span>
+          <span className="resourceButtonContainer finePrint">
+            <button className="playerButton">-</button>😥 0
+            <button className="playerButton">+</button>
+          </span>
+          <span className="resourceButtonContainer finePrint">
+            <button className="playerButton">-</button>💰 0
+            <button className="playerButton">+</button>
+          </span>
+        </div>
+        <div className="resourceColumn">
+          <span className="resourceButtonContainer finePrint">
+            <button className="playerButton">-</button>🐍 0
+            <button className="playerButton">+</button>
+          </span>
+          <span className="resourceButtonContainer finePrint">
+            <button className="playerButton">-</button>⚡ 0
+            <button className="playerButton">+</button>
+          </span>
+          <span className="resourceButtonContainer finePrint">
+            <button className="playerButton">-</button>🏅 0
+            <button className="playerButton">+</button>
+          </span>
+        </div>
+      </div>
+      <div className="commanderDetails">
+        <span className="finePrint">{player.commander}</span>
+        <span className="finePrint">
+          {player.sigSpell || player.partner || "---"}
+        </span>
       </div>
     </div>
   );
