@@ -107,7 +107,7 @@ h1 {
   font-size: x-small;
 }
 
-.nexusTitle {
+.nexusTitle, .cardTitle {
   border: 1px solid black;
   background-color: white;
   display: flex;
@@ -249,8 +249,39 @@ a {
   height: 200px;
 }
 
+.cardText {
+  border: 1px solid black;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content:baseline;
+  height: 170px;
+  padding: 5px;
+}
+
+
 .lifeButtons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.zone {
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.card {
+  border: 1px solid black;
+  height: 255px;
+  width: 200px;
+}
+
+.setCode {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
 }

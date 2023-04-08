@@ -1,5 +1,5 @@
-import nexiiData from "../nexiiData";
-import playerData from "../playerData";
+import nexiiData from "../dataFiles/nexiiData";
+import playerData from "../dataFiles/playerData";
 import EnemyDeck from "./EnemyDeck";
 import Nexus from "./Nexus";
 import Player from "./Player";
@@ -19,8 +19,8 @@ const Session = (props) => {
         <Nexus key={nexiiData[2].id} nexus={nexiiData[2]} round={round} />
         {/* <Nexus key={nexiiData[3].id} nexus={nexiiData[3]} round={round} /> */}
       </div>
-      <EnemyDeck />
       <TrickDeck />
+      <EnemyDeck />
     </div>
   );
 };
