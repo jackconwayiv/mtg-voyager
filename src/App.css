@@ -91,11 +91,18 @@ h1 {
   
 }
 
-.navContainer, .playerContainer, .nexiiContainer, .roundContainer{
+.navContainer, .playerContainer, .nexiiContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+
+.roundContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
 
 .commanderTax {
   display: flex;
