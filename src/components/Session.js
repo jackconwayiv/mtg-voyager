@@ -28,18 +28,21 @@ const Session = ({ state, dispatch }) => {
         <Nexus
           key={state.nexii[0].id}
           nexus={state.nexii[0]}
+          index={0}
           round={state.campaign.round}
           dispatch={dispatch}
         />
         <Nexus
           key={state.nexii[1].id}
           nexus={state.nexii[1]}
+          index={1}
           round={state.campaign.round}
           dispatch={dispatch}
         />
         <Nexus
           key={state.nexii[2].id}
           nexus={state.nexii[2]}
+          index={2}
           round={state.campaign.round}
           dispatch={dispatch}
         />

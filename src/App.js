@@ -11,7 +11,6 @@ import reducer from "./functions/reducer";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, gameData);
-  const round = state.campaign.round;
   const campaign = state.campaign;
   const gameStatus = state.campaign.gameStatus;
 
@@ -34,7 +33,11 @@ function App() {
         {(gameStatus === "before" ||
           gameStatus === "won" ||
           gameStatus === "lost") && (
-          <Scenario campaign={campaign} dispatch={dispatch} />
+          <Scenario
+            campaign={campaign}
+            nexii={state.nexii}
+            dispatch={dispatch}
+          />
         )}
         {(gameStatus === "progressing" || gameStatus === "campaign") && (
           <Campaign campaign={campaign} dispatch={dispatch} />

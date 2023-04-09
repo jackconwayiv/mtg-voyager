@@ -40,7 +40,7 @@ const gameData = {
         "Congratulations! You're on your way to becoming a Voyager MtG veteran!",
     },
     gameStatus: "init", //flag string
-    currentScenario: 1, //marker number for progress through campaign
+    currentScenario: 0, //marker number for progress through campaign
     startingLife: [20, 20, 20],
     startingPoison: [0, 0, 0],
     setupTurns: 3,
@@ -48,8 +48,23 @@ const gameData = {
     won: false,
     lost: false,
   },
+  archive: [
+    {
+      campaignId: 1,
+      dateStarted: "date",
+      playersData: [
+        {
+          name: "billy",
+          commander: "hi",
+          commanderB: "hi",
+          endingLife: 3,
+          endingPoison: 6,
+        },
+        {},
+      ],
+      scenariosData: [{ id: 1, attempts: 1, dateCompleted: "date" }],
+    },
+  ],
 };
-
-//starting poison and starting life go on player object, not on campaign data
 
 export default gameData;

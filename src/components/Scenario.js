@@ -1,12 +1,7 @@
 import React from "react";
-import nexiiData from "../dataFiles/nexiiData";
 import Nexus from "./Nexus";
-const Scenario = ({ campaign, dispatch }) => {
+const Scenario = ({ nexii, campaign, dispatch }) => {
   const scenario = campaign.details.scenarios[campaign.currentScenario - 1];
-
-  const scenarioNexii = nexiiData.filter((nexus) =>
-    scenario.nexii.includes(nexus.id),
-  );
 
   return (
     <div className="scenario">
@@ -40,7 +35,7 @@ const Scenario = ({ campaign, dispatch }) => {
         <div>
           <h2>Who You're Facing:</h2>
           <div className="nexiiContainer">
-            {scenarioNexii.map((nexus) => {
+            {nexii.map((nexus) => {
               return <Nexus key={nexus.id} nexus={nexus} round={0} />;
             })}
           </div>

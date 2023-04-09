@@ -1,6 +1,6 @@
 import React from "react";
 
-const Nexus = ({ nexus, round, dispatch }) => {
+const Nexus = ({ nexus, index, round, dispatch }) => {
   const life = nexus.life;
 
   return (
@@ -19,7 +19,7 @@ const Nexus = ({ nexus, round, dispatch }) => {
           onClick={() => {
             dispatch({
               type: "nexusLife",
-              id: nexus.id,
+              index,
               value: -5,
             });
           }}
@@ -31,7 +31,7 @@ const Nexus = ({ nexus, round, dispatch }) => {
           onClick={() => {
             dispatch({
               type: "nexusLife",
-              id: nexus.id,
+              index,
               value: -1,
             });
           }}
@@ -43,7 +43,7 @@ const Nexus = ({ nexus, round, dispatch }) => {
           onClick={() => {
             dispatch({
               type: "nexusLife",
-              id: nexus.id,
+              index,
               value: 1,
             });
           }}
@@ -54,7 +54,7 @@ const Nexus = ({ nexus, round, dispatch }) => {
           onClick={() => {
             dispatch({
               type: "nexusLife",
-              id: nexus.id,
+              index,
               value: 5,
             });
           }}

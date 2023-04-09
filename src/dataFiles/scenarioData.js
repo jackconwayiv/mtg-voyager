@@ -28,7 +28,7 @@ const scenarios = [
     id: 1001002,
     code: "1-2",
     name: "The Forest",
-    nexii: [1, 3, 4],
+    nexii: [4, 5, 6],
     objective: "Defeat All Nexii",
     beforeText:
       "A deep dark forest sprawls out between you and the cave which is the source of tee monsters.",
@@ -39,7 +39,7 @@ const scenarios = [
     id: 1001003,
     code: "1-3",
     name: "The Cave",
-    nexii: [2, 3, 4],
+    nexii: [2, 4, 6],
     objective: "Defeat All Nexii",
     beforeText: "The cave is spooky. Are you sure you're up to the task?",
     wonText:

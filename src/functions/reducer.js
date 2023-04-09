@@ -1,4 +1,5 @@
 import _ from "lodash";
+import nexiiData from "../dataFiles/nexiiData";
 
 const checkIfLost = (players) => {
   const filtered = players.filter((player) => player.resources.life === 0);
@@ -11,9 +12,23 @@ const checkIfWon = (nexii) => {
   return filtered.length === nexii.length;
 };
 
+const fetchNewNexii = (state) => {
+  const scenarioIndex = state.campaign.currentScenario - 1;
+  console.log("scenarioIndex", scenarioIndex);
+  const scenario = state.campaign.details.scenarios[scenarioIndex];
+  console.log("scenario", scenario);
+  const newNexii = nexiiData.filter((nexus) => {
+    return scenario.nexii.includes(nexus.id);
+  });
+  console.log(newNexii);
+  return newNexii;
+};
+
+//populate new enemy Decks function
+
 function reducer(state, action) {
   console.log(action);
-  const { type, value, id, resource } = action;
+  const { type, value, id, resource, index } = action;
 
   const newState = _.cloneDeep(state);
 
@@ -29,20 +44,23 @@ function reducer(state, action) {
       newState.campaign.lost = checkIfLost(newState.players);
       break;
     case "nexusLife":
-      newState.nexii[id - 1].life += value;
+      newState.nexii[index].life += value;
       newState.campaign.won = checkIfWon(newState.nexii);
       break;
     case "nextScenario":
       newState.campaign.currentScenario += 1;
+      newState.nexii = fetchNewNexii(newState);
+      // call function to populate both enemy decks based on Nexii and scenario core set
       newState.campaign.gameStatus = "before";
       break;
     case "archiveCampaign":
-      newState.campaign.currentScenario = 1; //this should be 0? but that currently doesn't mean anything
+      newState.campaign.currentScenario = 0;
       newState.campaign.gameStatus = "init";
-      //add an object to archive array that lists the player data, scenario data, number of attempts, date started, and date completed
+      //push new campaign record object to archive array
       break;
     case "startNewCampaign":
       newState.campaign.currentScenario = 1;
+      newState.nexii = fetchNewNexii(newState);
       newState.campaign.gameStatus = "campaign";
       break;
     case "winScenario":
@@ -54,7 +72,7 @@ function reducer(state, action) {
         (player) => player.resources.poison,
       );
       console.log("poisons: ", newState.campaign.startingPoison);
-      //could pull this out since it's used on win and on lose
+      //could pull this out into its own function since it's used on win and on lose
       newState.players.forEach((player) =>
         Object.keys(player.resources).forEach((resource) => {
           if (resource !== "life" && resource !== "poison") {
@@ -99,8 +117,6 @@ function reducer(state, action) {
 }
 export default reducer;
 
-//when does player life and poison get populated from startingLife snapshot?
-
 //triggerWon:
 //snapshot player life and player poison
 //reset weal, woe, energy, xp, taxA, and taxB, AND round to 0 upon winClick
@@ -115,11 +131,11 @@ export default reducer;
 //set gameStatus
 
 //setup steps:
-//populatePlayerArray
-//populateNexiiArray
-//populateThreatDeck (shuffle first)
-//populateTrickDeck (shuffle first)
-//populate campaign.scenarios
+//populatePlayerArray (on create campaign)
+//populate campaign.scenarios (on create campaign)
+//when does player life and poison get populated from startingLife snapshot?
 
-//what happens if I click "win" and i didn't mean to? can I go back?
-//is having to click WIN already a failsafe, on top of decrementing the nexii health?
+//advance round:
+//populateNexiiArray (on advance round)
+//populateThreatDeck (shuffle first) (on advance round)
+//populateTrickDeck (shuffle first) (on advance round)
