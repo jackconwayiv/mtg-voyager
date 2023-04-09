@@ -105,6 +105,7 @@ function reducer(state, action) {
         }),
       );
       newState.campaign.setupTurns += 1;
+      newState.nexii = fetchNewNexii(newState); //this may not be needed, added it due to dev testing setup
       newState.campaign.gameStatus = "lost";
       newState.campaign.won = false;
       newState.campaign.lost = false;

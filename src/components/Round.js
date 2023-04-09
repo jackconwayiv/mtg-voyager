@@ -3,32 +3,43 @@ const Round = (props) => {
   const dispatch = props.dispatch;
   const campaign = props.campaign;
   const round = campaign.round;
-  const gameStatus = campaign.gameStatus;
   const won = campaign.won;
   const lost = campaign.lost;
-
   return (
     <div className="roundContainer">
-      <span>Round: {round}</span>
-      {round === 0 && <span>Number of Setup Turns?</span>}
       <span>
-        <button
-          disabled={round < 1 || gameStatus !== "playing"}
-          onClick={() => {
-            dispatch({ type: "round", value: -1 });
-          }}
-        >
-          Previous Round
-        </button>
-        <button
-          disabled={gameStatus !== "playing"}
-          onClick={() => {
-            dispatch({ type: "round", value: 1 });
-          }}
-        >
-          Next Round
-        </button>
-        {gameStatus === "playing" && won && (
+        {round === 0 && <>Number of Setup Turns?</>} Round: {round}
+      </span>
+      <div>
+        {round > 1 && (
+          <button
+            disabled={round < 2}
+            onClick={() => {
+              dispatch({ type: "round", value: -1 });
+            }}
+          >
+            Previous Round
+          </button>
+        )}
+        {round === 0 && (
+          <button
+            onClick={() => {
+              dispatch({ type: "round", value: 1 });
+            }}
+          >
+            Start Game
+          </button>
+        )}
+        {round > 0 && (
+          <button
+            onClick={() => {
+              dispatch({ type: "round", value: 1 });
+            }}
+          >
+            Next Round
+          </button>
+        )}
+        {won && (
           <button
             onClick={() => {
               dispatch({ type: "winScenario" });
@@ -37,7 +48,7 @@ const Round = (props) => {
             Win!
           </button>
         )}
-        {gameStatus === "playing" && lost && (
+        {lost && (
           <button
             onClick={() => {
               dispatch({ type: "loseScenario" });
@@ -46,7 +57,7 @@ const Round = (props) => {
             Lose!
           </button>
         )}
-      </span>
+      </div>
     </div>
   );
 };

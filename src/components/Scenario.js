@@ -31,6 +31,13 @@ const Scenario = ({ nexii, campaign, dispatch }) => {
           Back to Campaign
         </button>
       )}
+      {campaign.gameStatus === "lost" && (
+        <button
+          onClick={() => dispatch({ type: "gameStatus", value: "campaign" })}
+        >
+          Back to Campaign
+        </button>
+      )}
       {campaign.gameStatus === "before" && (
         <div>
           <h2>Who You're Facing:</h2>
