@@ -21,7 +21,5 @@ const deck = [
   { id: 5, name: "Giant Growth", color: "green", cost: "G", revealed: false },
 ];
 
-const shuffledDeck = shuffleCards(deck);
-
 // export default shuffledDeck;
 export default shuffleCards;

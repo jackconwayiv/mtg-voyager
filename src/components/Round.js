@@ -1,8 +1,12 @@
 import React from "react";
 const Round = (props) => {
-  const round = props.round;
   const dispatch = props.dispatch;
-  const gameStatus = props.gameStatus;
+  const campaign = props.campaign;
+  const round = campaign.round;
+  const gameStatus = campaign.gameStatus;
+  const won = campaign.won;
+  const lost = campaign.lost;
+
   return (
     <div className="roundContainer">
       <span>Round: {round}</span>
@@ -24,13 +28,22 @@ const Round = (props) => {
         >
           Next Round
         </button>
-        {gameStatus === "playing" && (
+        {gameStatus === "playing" && won && (
           <button
             onClick={() => {
-              dispatch({ type: "gameStatus", value: "won" });
+              dispatch({ type: "winScenario" });
             }}
           >
             Win!
+          </button>
+        )}
+        {gameStatus === "playing" && lost && (
+          <button
+            onClick={() => {
+              dispatch({ type: "loseScenario" });
+            }}
+          >
+            Lose!
           </button>
         )}
       </span>

@@ -6,7 +6,7 @@ const playerData = [
     commanderB: "Rampant Growth",
     faction: "blue",
     resources: {
-      life: 100,
+      life: 2,
       woe: 0,
       weal: 0,
       poison: 0,
@@ -23,7 +23,7 @@ const playerData = [
     commanderB: "Travel Preparations",
     faction: "white",
     resources: {
-      life: 20,
+      life: 2,
       woe: 0,
       weal: 0,
       poison: 0,
@@ -40,7 +40,7 @@ const playerData = [
     commanderB: null,
     faction: "red",
     resources: {
-      life: 20,
+      life: 2,
       woe: 0,
       weal: 0,
       poison: 0,

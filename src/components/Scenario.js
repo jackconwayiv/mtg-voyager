@@ -2,7 +2,7 @@ import React from "react";
 import nexiiData from "../dataFiles/nexiiData";
 import Nexus from "./Nexus";
 const Scenario = ({ campaign, dispatch }) => {
-  const scenario = campaign.scenarios[campaign.currentScenario - 1];
+  const scenario = campaign.details.scenarios[campaign.currentScenario - 1];
 
   const scenarioNexii = nexiiData.filter((nexus) =>
     scenario.nexii.includes(nexus.id),
@@ -11,7 +11,9 @@ const Scenario = ({ campaign, dispatch }) => {
   return (
     <div className="scenario">
       <h1>
-        Scenario {scenario.code}: {scenario.name}
+        {campaign.gameStatus === "lost" && <span>You Lost </span>}
+        {campaign.gameStatus === "won" && <span>You Won </span>}Scenario{" "}
+        {scenario.code}: {scenario.name}
       </h1>
       {campaign.gameStatus === "before" && <p>{scenario.beforeText}</p>}
       {campaign.gameStatus === "before" && (

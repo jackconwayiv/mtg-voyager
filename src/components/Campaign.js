@@ -16,38 +16,41 @@ const Campaign = ({ campaign, dispatch }) => {
         See the victory text and rewards for the completed campaign. See a
         scoreboard comparing your previous runs, or other groups' runs?
       </p>
-      {campaign.scenarios.map((scenario) => {
+      {campaign.details.scenarios.map((scenario) => {
         return (
           <span key={scenario.id}>
             [[{scenario.code}] {scenario.name}]
           </span>
         );
       })}
-      <button
-        onClick={() => {
-          dispatch({ type: "gameStatus", value: "before" });
-        }}
-      >
-        Start Scenario
-      </button>
+      <p>Current Scenario: {JSON.stringify(campaign.currentScenario)}</p>
+      {campaign.gameStatus === "campaign" && (
+        <button
+          onClick={() => {
+            dispatch({ type: "gameStatus", value: "before" });
+          }}
+        >
+          Start Scenario
+        </button>
+      )}
       {campaign.gameStatus === "progressing" &&
-        campaign.currentScenario <= campaign.finalScenario && (
+        campaign.currentScenario < campaign.details.finalScenario && (
           <button
             onClick={() => {
-              dispatch({ type: "gameStatus", value: "before" });
+              dispatch({ type: "nextScenario" });
             }}
           >
             Advance to Next Scenario
           </button>
         )}
       {campaign.gameStatus === "progressing" &&
-        campaign.currentScenario > campaign.finalScenario && (
+        campaign.currentScenario === campaign.details.finalScenario && (
           <button
             onClick={() => {
-              dispatch({ type: "gameStatus", value: "before" });
+              dispatch({ type: "archiveCampaign" });
             }}
           >
-            Conclude & Archive Scenario
+            Conclude & Archive Campaign
           </button>
         )}
     </div>

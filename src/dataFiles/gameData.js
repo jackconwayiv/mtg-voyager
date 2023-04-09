@@ -30,15 +30,23 @@ const gameData = {
     exile: [],
   },
   campaign: {
+    details: {
+      id: 1,
+      title: "Beginner Campaign",
+      finalScenario: 3,
+      description: "A simple way to learn the rules.",
+      scenarios,
+      victory:
+        "Congratulations! You're on your way to becoming a Voyager MtG veteran!",
+    },
     gameStatus: "init", //flag string
-    campaign: {}, //a campaign object
-    scenarios, //an array of scenario objects
-    currentScenario: 1, //marker number
-    finalScenario: 3, //if current > final, it's over
-    startingLife: [20, 20, 20], //array of values
-    startingPoison: [0, 0, 0], //array of values
-    setupTurns: 3, //goes up if the party loses
+    currentScenario: 1, //marker number for progress through campaign
+    startingLife: [20, 20, 20],
+    startingPoison: [0, 0, 0],
+    setupTurns: 3,
     round: 0,
+    won: false,
+    lost: false,
   },
 };
 
