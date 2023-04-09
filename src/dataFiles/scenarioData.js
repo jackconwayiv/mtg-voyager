@@ -14,7 +14,7 @@
 
 const scenarios = [
   {
-    id: 1001001,
+    id: 1,
     code: "1-1",
     name: "The Farmlands",
     nexii: [1, 2, 3],
@@ -25,7 +25,7 @@ const scenarios = [
       "The farmers are eternally grateful and bake you a pumpkin pie in thanks!",
   },
   {
-    id: 1001002,
+    id: 2,
     code: "1-2",
     name: "The Forest",
     nexii: [4, 5, 6],
@@ -36,7 +36,7 @@ const scenarios = [
       "After a grueling journey, you've finally reached your destination -- the mouth of the monsters' lair!",
   },
   {
-    id: 1001003,
+    id: 3,
     code: "1-3",
     name: "The Cave",
     nexii: [2, 4, 6],

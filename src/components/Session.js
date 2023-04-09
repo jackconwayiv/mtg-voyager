@@ -2,9 +2,13 @@ import EnemyDeck from "./EnemyDeck";
 import Nexus from "./Nexus";
 import Player from "./Player";
 import TrickDeck from "./TrickDeck";
-const Session = ({ state, dispatch }) => {
+const Session = ({ state, index, dispatch }) => {
   return (
     <div>
+      <h2>
+        [{state.campaign.details.scenarios[index].code}]{" "}
+        {state.campaign.details.scenarios[index].name}
+      </h2>
       <div className="playerContainer">
         {/* map this */}
         <Player

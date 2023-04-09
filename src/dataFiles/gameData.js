@@ -14,7 +14,7 @@ const trickDeck = threatDeck;
 
 const gameData = {
   players: playerData, //an array of player objects
-  nexii: nexiiData, //an array of nexus objects
+  nexii: [nexiiData[0], nexiiData[1], nexiiData[2]], //an array of nexus objects
   threatDeck: {
     library: threatDeck, //an array of card objects
     hand: [],

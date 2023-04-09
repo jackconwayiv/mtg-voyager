@@ -43,7 +43,11 @@ function App() {
           <Campaign campaign={campaign} dispatch={dispatch} />
         )}
         {gameStatus === "playing" && (
-          <Session state={state} dispatch={dispatch} />
+          <Session
+            state={state}
+            index={campaign.currentScenario - 1}
+            dispatch={dispatch}
+          />
         )}
       </div>
     </>

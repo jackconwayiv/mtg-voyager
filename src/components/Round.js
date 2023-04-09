@@ -3,8 +3,11 @@ const Round = (props) => {
   const dispatch = props.dispatch;
   const campaign = props.campaign;
   const round = campaign.round;
-  const won = campaign.won;
-  const lost = campaign.lost;
+
+  // add buttons to advance through setup turns BEFORE the real rounds start
+  // break rounds up into turns, player turn and enemy turn
+  // enemy turn 1 happens before player turn 1? or are the setup turns player round 1?
+
   return (
     <div className="roundContainer">
       <span>
@@ -39,7 +42,7 @@ const Round = (props) => {
             Next Round
           </button>
         )}
-        {won && (
+        {campaign.won && (
           <button
             onClick={() => {
               dispatch({ type: "winScenario" });
@@ -48,7 +51,7 @@ const Round = (props) => {
             Win!
           </button>
         )}
-        {lost && (
+        {campaign.lost && (
           <button
             onClick={() => {
               dispatch({ type: "loseScenario" });
