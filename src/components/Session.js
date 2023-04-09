@@ -1,26 +1,51 @@
-import nexiiData from "../dataFiles/nexiiData";
-import playerData from "../dataFiles/playerData";
 import EnemyDeck from "./EnemyDeck";
 import Nexus from "./Nexus";
 import Player from "./Player";
 import TrickDeck from "./TrickDeck";
-const Session = (props) => {
-  const round = props.round;
+const Session = ({ state, dispatch }) => {
   return (
     <div>
       <div className="playerContainer">
-        <Player key={playerData[0].id} player={playerData[0]} />
-        <Player key={playerData[1].id} player={playerData[1]} />
-        <Player key={playerData[2].id} player={playerData[2]} />
+        {/* map this */}
+        <Player
+          key={state.players[0].id}
+          player={state.players[0]}
+          dispatch={dispatch}
+        />
+        <Player
+          key={state.players[1].id}
+          player={state.players[1]}
+          dispatch={dispatch}
+        />
+        <Player
+          key={state.players[2].id}
+          player={state.players[2]}
+          dispatch={dispatch}
+        />
       </div>
       <div className="nexiiContainer">
-        <Nexus key={nexiiData[0].id} nexus={nexiiData[0]} round={round} />
-        <Nexus key={nexiiData[1].id} nexus={nexiiData[1]} round={round} />
-        <Nexus key={nexiiData[2].id} nexus={nexiiData[2]} round={round} />
-        {/* <Nexus key={nexiiData[3].id} nexus={nexiiData[3]} round={round} /> */}
+        {/* map this */}
+        <Nexus
+          key={state.nexii[0].id}
+          nexus={state.nexii[0]}
+          round={state.campaign.round}
+          dispatch={dispatch}
+        />
+        <Nexus
+          key={state.nexii[1].id}
+          nexus={state.nexii[1]}
+          round={state.campaign.round}
+          dispatch={dispatch}
+        />
+        <Nexus
+          key={state.nexii[2].id}
+          nexus={state.nexii[2]}
+          round={state.campaign.round}
+          dispatch={dispatch}
+        />
       </div>
-      <TrickDeck />
-      <EnemyDeck />
+      <TrickDeck deck={state.trickDeck} dispatch={dispatch} />
+      <EnemyDeck deck={state.threatDeck} dispatch={dispatch} />
     </div>
   );
 };

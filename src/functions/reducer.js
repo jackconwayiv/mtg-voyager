@@ -1,19 +1,33 @@
+import _ from "lodash";
+
 function reducer(state, action) {
-  const res = action.resource;
-  const val = action.value;
+  console.log(action);
+  const { type, value, id, resource } = action;
 
-  const newState = { ...state };
+  const newState = _.cloneDeep(state);
 
-  const newResources = {
-    ...newState.resources,
-    [res]: state.resources[res] + val,
-  };
-  return { ...state, resources: newResources };
+  switch (type) {
+    case "round":
+      newState.campaign.round += value;
+      break;
+    case "gameStatus":
+      newState.campaign.gameStatus = value;
+      break;
+    case "playerResource":
+      newState.players[id - 1].resources[resource] += value;
+      break;
+    case "nexusLife":
+      newState.nexii[id - 1].life += value;
+      break;
+    default:
+      break;
+  }
+
+  return newState;
 }
 export default reducer;
 
-//all over the place:
-//set gameStatus
+//when does player life and poison get populated from startingLife snapshot?
 
 //setup steps:
 //populatePlayerArray
@@ -21,10 +35,6 @@ export default reducer;
 //populateThreatDeck (shuffle first)
 //populateTrickDeck (shuffle first)
 //populate campaign.scenarios
-
-//during game:
-//increment resource (8xP + 1xN options)
-//advance round
 
 //triggerWon:
 //snapshot player life and player poison

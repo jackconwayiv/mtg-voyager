@@ -1,5 +1,5 @@
 import React from "react";
-const Campaign = ({ gameStatus, setGameStatus }) => {
+const Campaign = ({ campaign, dispatch }) => {
   return (
     <div>
       <h1>Campaign View</h1>
@@ -16,27 +16,40 @@ const Campaign = ({ gameStatus, setGameStatus }) => {
         See the victory text and rewards for the completed campaign. See a
         scoreboard comparing your previous runs, or other groups' runs?
       </p>
+      {campaign.scenarios.map((scenario) => {
+        return (
+          <span key={scenario.id}>
+            [[{scenario.code}] {scenario.name}]
+          </span>
+        );
+      })}
       <button
         onClick={() => {
-          setGameStatus("before");
+          dispatch({ type: "gameStatus", value: "before" });
         }}
       >
         Start Scenario
       </button>
-      <button
-        onClick={() => {
-          setGameStatus("before");
-        }}
-      >
-        Advance to Next Scenario
-      </button>
-      <button
-        onClick={() => {
-          setGameStatus("before");
-        }}
-      >
-        Conclude & Archive Scenario
-      </button>
+      {campaign.gameStatus === "progressing" &&
+        campaign.currentScenario <= campaign.finalScenario && (
+          <button
+            onClick={() => {
+              dispatch({ type: "gameStatus", value: "before" });
+            }}
+          >
+            Advance to Next Scenario
+          </button>
+        )}
+      {campaign.gameStatus === "progressing" &&
+        campaign.currentScenario > campaign.finalScenario && (
+          <button
+            onClick={() => {
+              dispatch({ type: "gameStatus", value: "before" });
+            }}
+          >
+            Conclude & Archive Scenario
+          </button>
+        )}
     </div>
   );
 };

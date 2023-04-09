@@ -1,19 +1,6 @@
-import React, { useReducer } from "react";
+import React from "react";
 
-function reducer(state, action) {
-  const res = action.resource;
-  const val = action.value;
-  const newState = { ...state };
-  const newResources = {
-    ...newState.resources,
-    [res]: state.resources[res] + val,
-  };
-  return { ...state, resources: newResources };
-}
-
-const Player = ({ player }) => {
-  const [state, dispatch] = useReducer(reducer, player);
-
+const Player = ({ player, dispatch }) => {
   const resourceSymbol = {
     life: "❤️",
     woe: "📈",
@@ -24,6 +11,9 @@ const Player = ({ player }) => {
     taxA: "💰",
     taxB: "💰",
   };
+  //() => dispatch({ type: "gameStatus", value: "playing" })
+
+  //refactor resource button trays into a component that also takes a "scale" or "style" param, pull it out into separate file, use it in nexus and player
 
   const renderResources = (state, type) => {
     const presourceArray = Object.keys(state.resources);
@@ -60,7 +50,12 @@ const Player = ({ player }) => {
             className="playerButton"
             disabled={state.resources[res] === 0}
             onClick={() => {
-              dispatch({ resource: res, value: -1 });
+              dispatch({
+                type: "playerResource",
+                id: player.id,
+                resource: res,
+                value: -1,
+              });
             }}
           >
             -
@@ -69,7 +64,12 @@ const Player = ({ player }) => {
           <button
             className="playerButton"
             onClick={() => {
-              dispatch({ resource: res, value: 1 });
+              dispatch({
+                type: "playerResource",
+                id: player.id,
+                resource: res,
+                value: 1,
+              });
             }}
           >
             +
@@ -82,7 +82,7 @@ const Player = ({ player }) => {
   return (
     <div
       className={
-        state.resources.life > 0
+        player.resources.life > 0
           ? "playercard " + player.faction + "player"
           : "playercard dead"
       }
@@ -92,20 +92,20 @@ const Player = ({ player }) => {
           <span className="playerName boldened">{player.name}</span>
         </div>
         <div className="resourceColumn">
-          {player && player.resources && renderResources(state, "left")}
+          {player && player.resources && renderResources(player, "left")}
         </div>
         <div className="resourceColumn">
-          {player && player.resources && renderResources(state, "right")}
+          {player && player.resources && renderResources(player, "right")}
         </div>
       </div>
       <div className="commanderDetails">
         <div className="commanderTax">
           <span className="finePrint">{player.commander}</span>
-          {player && player.commander && renderResources(state, "taxA")}
+          {player && player.commander && renderResources(player, "taxA")}
         </div>
         <div className="commanderTax">
           <span className="finePrint">{player.commanderB || " "}</span>
-          {player && player.commanderB && renderResources(state, "taxB")}
+          {player && player.commanderB && renderResources(player, "taxB")}
         </div>
       </div>
     </div>

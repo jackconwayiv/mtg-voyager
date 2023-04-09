@@ -1,9 +1,8 @@
 import React from "react";
 const Round = (props) => {
   const round = props.round;
-  const setRound = props.setRound;
+  const dispatch = props.dispatch;
   const gameStatus = props.gameStatus;
-  const setGameStatus = props.setGameStatus;
   return (
     <div className="roundContainer">
       <span>Round: {round}</span>
@@ -12,7 +11,7 @@ const Round = (props) => {
         <button
           disabled={round < 1 || gameStatus !== "playing"}
           onClick={() => {
-            setRound(round - 1);
+            dispatch({ type: "round", value: -1 });
           }}
         >
           Previous Round
@@ -20,13 +19,19 @@ const Round = (props) => {
         <button
           disabled={gameStatus !== "playing"}
           onClick={() => {
-            setRound(round + 1);
+            dispatch({ type: "round", value: 1 });
           }}
         >
           Next Round
         </button>
         {gameStatus === "playing" && (
-          <button onClick={() => setGameStatus("won")}>Win!</button>
+          <button
+            onClick={() => {
+              dispatch({ type: "gameStatus", value: "won" });
+            }}
+          >
+            Win!
+          </button>
         )}
       </span>
     </div>

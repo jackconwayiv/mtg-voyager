@@ -34,6 +34,9 @@ const gameData = {
     campaign: {}, //a campaign object
     scenarios, //an array of scenario objects
     currentScenario: 1, //marker number
+    finalScenario: 3, //if current > final, it's over
+    startingLife: [20, 20, 20], //array of values
+    startingPoison: [0, 0, 0], //array of values
     setupTurns: 3, //goes up if the party loses
     round: 0,
   },

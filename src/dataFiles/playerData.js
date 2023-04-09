@@ -4,7 +4,6 @@ const playerData = [
     name: "Bartholomew",
     commander: "Kiora, Capsizer of Ships",
     commanderB: "Rampant Growth",
-    partner: null,
     faction: "blue",
     resources: {
       life: 100,

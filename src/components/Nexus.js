@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Nexus = (props) => {
-  const nexus = props.nexus;
-  const round = props.round;
-
-  const [life, setLife] = useState(nexus.life);
+const Nexus = ({ nexus, round, dispatch }) => {
+  const life = nexus.life;
 
   return (
     <div
@@ -20,7 +17,11 @@ const Nexus = (props) => {
         <button
           disabled={life < 5}
           onClick={() => {
-            setLife(life - 5);
+            dispatch({
+              type: "nexusLife",
+              id: nexus.id,
+              value: -5,
+            });
           }}
         >
           -5
@@ -28,7 +29,11 @@ const Nexus = (props) => {
         <button
           disabled={life < 1}
           onClick={() => {
-            setLife(life - 1);
+            dispatch({
+              type: "nexusLife",
+              id: nexus.id,
+              value: -1,
+            });
           }}
         >
           -1
@@ -36,14 +41,22 @@ const Nexus = (props) => {
         <span className="boldened">❤️ {life}</span>
         <button
           onClick={() => {
-            setLife(life + 1);
+            dispatch({
+              type: "nexusLife",
+              id: nexus.id,
+              value: 1,
+            });
           }}
         >
           +1
         </button>
         <button
           onClick={() => {
-            setLife(life + 5);
+            dispatch({
+              type: "nexusLife",
+              id: nexus.id,
+              value: 5,
+            });
           }}
         >
           +5
