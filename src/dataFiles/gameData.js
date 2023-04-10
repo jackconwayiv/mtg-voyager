@@ -1,13 +1,7 @@
-import {
-  THSE01,
-  THSE02,
-  THSE03,
-  THSE04,
-  THSE05,
-} from "../dataFiles/therosSets";
 import nexiiData from "./nexiiData";
 import playerData from "./playerData";
 import scenarios from "./scenarioData";
+import { THSE01, THSE02, THSE03, THSE04, THSE05 } from "./therosCardSets";
 
 const threatDeck = [...THSE01, ...THSE02, ...THSE03, ...THSE04, ...THSE05];
 const trickDeck = threatDeck;

@@ -1,22 +1,47 @@
 import React from "react";
-import shuffleCards from "../functions/shuffleCards";
 import Card from "./Card";
-const TrickDeck = ({ deck }) => {
-  const shuffle = () => {
-    return shuffleCards(deck);
+import CardBar from "./CardBar";
+const TrickDeck = ({ deck, deckType, dispatch }) => {
+  const moveCard = (cardToMove, zoneFrom, zoneTo) => {
+    //card is an object
+    //zoneFrom and ZoneTo are keys on the deck object
+    const newZoneFrom = [
+      ...deck[zoneFrom].filter((card) => {
+        return card.id !== cardToMove.id;
+      }),
+    ];
+    const newZoneTo = [cardToMove, ...deck[zoneTo]];
+    dispatch({
+      type: "moveCard",
+      deckType,
+      index: { zoneFrom, zoneTo },
+      value: { newZoneFrom, newZoneTo },
+    });
   };
 
-  const renderCards = (deck) => {
-    return deck.library.map((card, id) => {
+  const drawCard = () => {
+    moveCard(deck.library[0], "library", "stack");
+  };
+
+  const renderCards = (zone, nameOfZone, typeOfRender) => {
+    return zone.map((card, id) => {
       return (
-        <span
-          key={id}
-          onClick={() => {
-            console.log("clicked");
-            card.revealed = !card.revealed;
-          }}
-        >
-          <Card card={card} />
+        <span key={id}>
+          {typeOfRender === "card" ? (
+            <Card
+              key={card.id}
+              card={card}
+              zoneIn={nameOfZone}
+              moveCard={moveCard}
+            />
+          ) : (
+            <CardBar
+              key={card.id}
+              card={card}
+              zoneIn={nameOfZone}
+              moveCard={moveCard}
+            />
+          )}
         </span>
       );
     });
@@ -25,7 +50,34 @@ const TrickDeck = ({ deck }) => {
   return (
     <div>
       <h2>Trick Deck</h2>
-      <div className="zone stack">{renderCards(shuffle(deck))}</div>
+      <div className="deckZonesDisplay">
+        <div className="zone library">
+          {" "}
+          <img
+            src="../cardback.jpg"
+            alt="cardback"
+            width="200px"
+            height="255px"
+            onClick={() => {
+              drawCard();
+            }}
+          />
+        </div>
+        <div className="zone stack">
+          {renderCards(deck.stack, "stack", "card")}
+        </div>
+        <div className="deckSidebar">
+          <div className="zone graveyard">
+            {renderCards(deck.graveyard, "graveyard", "bar")}
+          </div>
+          <div className="zone exile">
+            {renderCards(deck.exile, "exile", "bar")}
+          </div>
+          <div className="zone hand">
+            {renderCards(deck.hand, "hand", "bar")}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const THSE01 = [
     cost: "W",
     type: "Instant",
     text: "Exile target attacking creature. You may search your library for a basic land and put into play tapped. If you do, shuffle your library.",
-    revealed: false,
+    revealed: true,
   },
   {
     id: 1001002,
@@ -16,7 +16,7 @@ const THSE01 = [
     color: "white",
     cost: "W",
     type: "Sorcery",
-    revealed: false,
+    revealed: true,
   },
   {
     id: 1001003,
@@ -39,7 +39,7 @@ const THSE02 = [
     cost: "W",
     type: "Instant",
     text: "Exile target attacking creature. You may search your library for a basic land and put into play tapped. If you do, shuffle your library.",
-    revealed: false,
+    revealed: true,
   },
   {
     id: 1002002,
@@ -48,7 +48,7 @@ const THSE02 = [
     color: "blue",
     cost: "W",
     type: "Sorcery",
-    revealed: false,
+    revealed: true,
   },
   {
     id: 1002003,
@@ -80,7 +80,7 @@ const THSE03 = [
     color: "black",
     cost: "W",
     type: "Sorcery",
-    revealed: false,
+    revealed: true,
   },
 ];
 
@@ -93,7 +93,7 @@ const THSE04 = [
     cost: "W",
     type: "Instant",
     text: "Exile target attacking creature. You may search your library for a basic land and put into play tapped. If you do, shuffle your library.",
-    revealed: false,
+    revealed: true,
   },
   {
     id: 1004002,
@@ -102,7 +102,7 @@ const THSE04 = [
     color: "red",
     cost: "W",
     type: "Sorcery",
-    revealed: false,
+    revealed: true,
   },
   {
     id: 1004003,
@@ -125,7 +125,7 @@ const THSE05 = [
     cost: "W",
     type: "Instant",
     text: "Exile target attacking creature. You may search your library for a basic land and put into play tapped. If you do, shuffle your library.",
-    revealed: false,
+    revealed: true,
   },
   {
     id: 1005002,

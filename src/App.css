@@ -262,10 +262,9 @@ a {
   display: flex;
   flex-direction: column;
   justify-content:baseline;
-  height: 170px;
+  height: 185px;
   padding: 5px;
 }
-
 
 .lifeButtons {
   display: flex;
@@ -275,20 +274,48 @@ a {
 
 .zone {
   display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+}
+
+.stack {
   flex-direction: row;
   justify-content: baseline;
-  flex-wrap: wrap;
-  width: 100%;
+}
+
+.graveyard, .exile, .hand, .deckSidebar {
+  flex-direction: column;
+  justify-content: baseline;
+  
 }
 
 .card {
   border: 1px solid black;
-  height: 255px;
+  height: 280px;
   width: 200px;
+}
+
+.cardBar {
+  border: 1px solid black;
+  height: 62px;
+  width: 200px;
+  margin: 2px;
+  padding: 2px;
 }
 
 .setCode {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: space-between;
+}
+
+.deckZonesDisplay {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.zoneButton {
+  padding: 1px;
+  margin: 1px;
 }

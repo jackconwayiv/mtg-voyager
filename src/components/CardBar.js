@@ -1,15 +1,13 @@
 import React from "react";
-const Card = ({ card, zoneIn, moveCard }) => {
+const CardBar = ({ card, zoneIn, moveCard }) => {
   if (card.revealed) {
     //put on top of library, 10 down in library, shuffle into library
     return (
-      <div className={"card " + card.color} key={card.id}>
+      <div className={"cardBar " + card.color} key={card.id}>
         <div className="cardTitle">
           <p className="boldened">{card.name}</p>
           <p>{card.cost}</p>
         </div>
-        <div>{card.type}</div>
-        <div className="cardText">{card.text}</div>
         <div>
           <p className="finePrint setCode">
             {zoneIn !== "stack" && (
@@ -72,4 +70,4 @@ const Card = ({ card, zoneIn, moveCard }) => {
       <img src="../cardback.jpg" alt="cardback" width="200px" height="255px" />
     );
 };
-export default Card;
+export default CardBar;

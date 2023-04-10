@@ -1,4 +1,3 @@
-import EnemyDeck from "./EnemyDeck";
 import Nexus from "./Nexus";
 import Player from "./Player";
 import TrickDeck from "./TrickDeck";
@@ -51,8 +50,12 @@ const Session = ({ state, index, dispatch }) => {
           dispatch={dispatch}
         />
       </div>
-      <TrickDeck deck={state.trickDeck} dispatch={dispatch} />
-      <EnemyDeck deck={state.threatDeck} dispatch={dispatch} />
+      <TrickDeck
+        deck={state.trickDeck}
+        deckType={"trickDeck"}
+        dispatch={dispatch}
+      />
+      {/* <EnemyDeck deck={state.threatDeck} dispatch={dispatch} /> */}
     </div>
   );
 };

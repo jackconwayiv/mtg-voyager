@@ -1,5 +1,6 @@
 import _ from "lodash";
 import nexiiData from "../dataFiles/nexiiData";
+import shuffleCards from "../functions/shuffleCards";
 
 const checkIfLost = (players) => {
   const filtered = players.filter((player) => player.resources.life === 0);
@@ -23,12 +24,17 @@ const fetchNewNexii = (state) => {
   console.log(newNexii);
   return newNexii;
 };
+const fetchEnemyDecks = (state) => {
+  const trickDeck = shuffleCards([{}, {}, {}]);
+  const threatDeck = shuffleCards([{}, {}, {}]);
+  return { trickDeck, threatDeck };
+};
 
 //populate new enemy Decks function
 
 function reducer(state, action) {
   console.log(action);
-  const { type, value, id, resource, index } = action;
+  const { type, value, id, resource, index, deckType } = action;
 
   const newState = _.cloneDeep(state);
 
@@ -52,6 +58,10 @@ function reducer(state, action) {
       newState.nexii = fetchNewNexii(newState);
       // call function to populate both enemy decks based on Nexii and scenario core set
       newState.campaign.gameStatus = "before";
+      break;
+    case "moveCard":
+      newState[deckType][index.zoneFrom] = value.newZoneFrom;
+      newState[deckType][index.zoneTo] = value.newZoneTo;
       break;
     case "archiveCampaign":
       newState.campaign.currentScenario = 0;
