@@ -1,6 +1,6 @@
+import Deck from "./Deck";
 import Nexus from "./Nexus";
 import Player from "./Player";
-import TrickDeck from "./TrickDeck";
 const Session = ({ state, index, dispatch }) => {
   return (
     <div>
@@ -50,12 +50,20 @@ const Session = ({ state, index, dispatch }) => {
           dispatch={dispatch}
         />
       </div>
-      <TrickDeck
-        deck={state.trickDeck}
-        deckType={"trickDeck"}
-        dispatch={dispatch}
-      />
-      {/* <EnemyDeck deck={state.threatDeck} dispatch={dispatch} /> */}
+      {state.campaign.playersTurn && (
+        <Deck
+          deck={state.trickDeck}
+          deckType={"trickDeck"}
+          dispatch={dispatch}
+        />
+      )}
+      {!state.campaign.playersTurn && (
+        <Deck
+          deck={state.threatDeck}
+          deckType={"threatDeck"}
+          dispatch={dispatch}
+        />
+      )}
     </div>
   );
 };

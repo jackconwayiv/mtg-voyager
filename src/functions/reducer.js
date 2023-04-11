@@ -24,21 +24,56 @@ const fetchNewNexii = (state) => {
   console.log(newNexii);
   return newNexii;
 };
+
+const moveCard = (newState, cardToMove, deckType, zoneFrom, zoneTo) => {
+  const newZoneFrom = [
+    ...newState[deckType][zoneFrom].filter((card) => {
+      return card.id !== cardToMove.id;
+    }),
+  ];
+  const newZoneTo = [cardToMove, ...newState[deckType][zoneTo]];
+  newState[deckType][zoneFrom] = newZoneFrom;
+  newState[deckType][zoneTo] = newZoneTo;
+};
+
+const millOut = (newState) => {
+  newState.nexii.forEach((nexus) => {
+    nexus.life = Math.ceil(nexus.life / 2);
+  });
+};
+
+//populate new enemy Decks function
+
 const fetchEnemyDecks = (state) => {
   const trickDeck = shuffleCards([{}, {}, {}]);
   const threatDeck = shuffleCards([{}, {}, {}]);
   return { trickDeck, threatDeck };
 };
 
-//populate new enemy Decks function
+const reshuffleGraveyard = (newState, deckType) => {
+  const newYard = shuffleCards(newState[deckType].graveyard);
+  for (let i = 0; i < newYard.length; i++) {
+    moveCard(newState, newYard[i], deckType, "graveyard", "library");
+  }
+};
+
+const resolveFromStack = (newState, deckType) => {
+  const stack = newState[deckType].stack;
+  for (let i = 0; i < stack.length; i++) {
+    moveCard(newState, stack[i], deckType, "stack", "graveyard");
+  }
+};
 
 function reducer(state, action) {
   console.log(action);
-  const { type, value, id, resource, index, deckType } = action;
+  const { type, value, id, resource, index } = action;
 
   const newState = _.cloneDeep(state);
 
   switch (type) {
+    case "toggleTurn":
+      newState.campaign.playersTurn = !newState.campaign.playersTurn;
+      break;
     case "round":
       newState.campaign.round += value;
       break;
@@ -59,9 +94,31 @@ function reducer(state, action) {
       // call function to populate both enemy decks based on Nexii and scenario core set
       newState.campaign.gameStatus = "before";
       break;
+    case "drawCard":
+      if (newState[action.payload.deckType].stack.length > 0) {
+        resolveFromStack(newState, action.payload.deckType);
+      }
+
+      if (newState[action.payload.deckType].library.length === 0) {
+        reshuffleGraveyard(newState, action.payload.deckType);
+        millOut(newState);
+      }
+      moveCard(
+        newState,
+        newState[action.payload.deckType].library[0],
+        action.payload.deckType,
+        "library",
+        "stack",
+      );
+      break;
     case "moveCard":
-      newState[deckType][index.zoneFrom] = value.newZoneFrom;
-      newState[deckType][index.zoneTo] = value.newZoneTo;
+      moveCard(
+        newState,
+        action.payload.cardToMove,
+        action.payload.deckType,
+        action.payload.zoneFrom,
+        action.payload.zoneTo,
+      );
       break;
     case "archiveCampaign":
       newState.campaign.currentScenario = 0;
@@ -123,7 +180,7 @@ function reducer(state, action) {
     default:
       break;
   }
-
+  console.dir(newState.trickDeck);
   return newState;
 }
 export default reducer;

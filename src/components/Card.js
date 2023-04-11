@@ -62,7 +62,7 @@ const Card = ({ card, zoneIn, moveCard }) => {
                 ✋
               </button>
             )}
-            {card.set} {card.id}
+            {card.symbol} {card.id}
           </p>
         </div>
       </div>

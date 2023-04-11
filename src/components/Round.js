@@ -3,6 +3,7 @@ const Round = (props) => {
   const dispatch = props.dispatch;
   const campaign = props.campaign;
   const round = campaign.round;
+  const playersTurn = campaign.playersTurn;
 
   // add buttons to advance through setup turns BEFORE the real rounds start
   // break rounds up into turns, player turn and enemy turn
@@ -12,6 +13,24 @@ const Round = (props) => {
     <div className="roundContainer">
       <span>
         {round === 0 && <>Number of Setup Turns?</>} Round: {round}
+        {playersTurn && (
+          <button
+            onClick={() => {
+              dispatch({ type: "toggleTurn" });
+            }}
+          >
+            Finish Player Turn
+          </button>
+        )}
+        {!playersTurn && (
+          <button
+            onClick={() => {
+              dispatch({ type: "toggleTurn" });
+            }}
+          >
+            Finish Enemy Turn
+          </button>
+        )}
       </span>
       <div>
         {round > 1 && (

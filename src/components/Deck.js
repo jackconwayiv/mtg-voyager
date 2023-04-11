@@ -1,30 +1,25 @@
 import React from "react";
 import Card from "./Card";
 import CardBar from "./CardBar";
-const TrickDeck = ({ deck, deckType, dispatch }) => {
+const Deck = ({ deck, deckType, dispatch }) => {
   const moveCard = (cardToMove, zoneFrom, zoneTo) => {
-    //card is an object
-    //zoneFrom and ZoneTo are keys on the deck object
-    const newZoneFrom = [
-      ...deck[zoneFrom].filter((card) => {
-        return card.id !== cardToMove.id;
-      }),
-    ];
-    const newZoneTo = [cardToMove, ...deck[zoneTo]];
+    console.log(`Moving ${cardToMove.name} from ${zoneFrom} to ${zoneTo}`);
     dispatch({
       type: "moveCard",
-      deckType,
-      index: { zoneFrom, zoneTo },
-      value: { newZoneFrom, newZoneTo },
+      payload: { cardToMove, deckType, zoneFrom, zoneTo },
     });
   };
 
   const drawCard = () => {
-    moveCard(deck.library[0], "library", "stack");
+    dispatch({
+      type: "drawCard",
+      payload: { deckType },
+    });
   };
 
   const renderCards = (zone, nameOfZone, typeOfRender) => {
     return zone.map((card, id) => {
+      //reshuffle error here
       return (
         <span key={id}>
           {typeOfRender === "card" ? (
@@ -32,7 +27,7 @@ const TrickDeck = ({ deck, deckType, dispatch }) => {
               key={card.id}
               card={card}
               zoneIn={nameOfZone}
-              moveCard={moveCard}
+              moveCard={moveCard} //reshuffle error here
             />
           ) : (
             <CardBar
@@ -49,7 +44,6 @@ const TrickDeck = ({ deck, deckType, dispatch }) => {
 
   return (
     <div>
-      <h2>Trick Deck</h2>
       <div className="deckZonesDisplay">
         <div className="zone library">
           {" "}
@@ -62,6 +56,7 @@ const TrickDeck = ({ deck, deckType, dispatch }) => {
               drawCard();
             }}
           />
+          {deck.library.length}
         </div>
         <div className="zone stack">
           {renderCards(deck.stack, "stack", "card")}
@@ -81,4 +76,4 @@ const TrickDeck = ({ deck, deckType, dispatch }) => {
     </div>
   );
 };
-export default TrickDeck;
+export default Deck;

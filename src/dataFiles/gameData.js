@@ -1,10 +1,9 @@
 import nexiiData from "./nexiiData";
 import playerData from "./playerData";
 import scenarios from "./scenarioData";
-import { THSE01, THSE02, THSE03, THSE04, THSE05 } from "./therosCardSets";
-
-const threatDeck = [...THSE01, ...THSE02, ...THSE03, ...THSE04, ...THSE05];
-const trickDeck = threatDeck;
+import therosCards from "./therosCardSets";
+const threatDeck = therosCards.filter((card) => card.type !== "Instant");
+const trickDeck = therosCards.filter((card) => card.type === "Instant");
 
 const gameData = {
   players: playerData, //an array of player objects
@@ -26,6 +25,7 @@ const gameData = {
   campaign: {
     details: {
       id: 1,
+      startedOn: "",
       title: "Beginner Campaign",
       finalScenario: 3,
       description: "A simple way to learn the rules.",
@@ -39,6 +39,7 @@ const gameData = {
     startingPoison: [0, 0, 0],
     setupTurns: 3,
     round: 0,
+    playersTurn: true,
     won: false,
     lost: false,
   },

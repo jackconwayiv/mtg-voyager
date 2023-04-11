@@ -4,7 +4,7 @@ const nexiiData = [
     name: "Nicol Bolas",
     colors: "UBR",
     faction: "black",
-    life: 2,
+    life: 10,
     setup: "During setup, each player starts with -1 card in hand.",
     rules:
       "On enemy upkeep, a random eligible player sacrifices a creature (or noncreature) permanent.",
@@ -18,7 +18,7 @@ const nexiiData = [
     name: "Baral",
     colors: "U",
     faction: "blue",
-    life: 2,
+    life: 14,
     setup: "During setup, each player starts with -1 card in hand.",
     rules:
       "On enemy upkeep, a random eligible player sacrifices a creature (or noncreature) permanent.",
@@ -32,7 +32,7 @@ const nexiiData = [
     name: "Vraska",
     colors: "BG",
     faction: "green",
-    life: 2,
+    life: 20,
     setup: "During setup, each player starts with -1 card in hand.",
     rules:
       "On enemy upkeep, a random eligible player sacrifices a creature (or noncreature) permanent.",
