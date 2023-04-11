@@ -1,4 +1,5 @@
 import _ from "lodash";
+import allCampaigns from "../dataFiles/campaignsData";
 import nexiiData from "../dataFiles/nexiiData";
 import shuffleCards from "../functions/shuffleCards";
 
@@ -15,13 +16,10 @@ const checkIfWon = (nexii) => {
 
 const fetchNewNexii = (state) => {
   const scenarioIndex = state.campaign.currentScenario - 1;
-  console.log("scenarioIndex", scenarioIndex);
   const scenario = state.campaign.details.scenarios[scenarioIndex];
-  console.log("scenario", scenario);
   const newNexii = nexiiData.filter((nexus) => {
     return scenario.nexii.includes(nexus.id);
   });
-  console.log(newNexii);
   return newNexii;
 };
 
@@ -127,6 +125,7 @@ function reducer(state, action) {
       break;
     case "startNewCampaign":
       newState.campaign.currentScenario = 1;
+      newState.campaign.details = allCampaigns[action.payload.campaignId - 1];
       newState.nexii = fetchNewNexii(newState);
       newState.campaign.gameStatus = "campaign";
       break;

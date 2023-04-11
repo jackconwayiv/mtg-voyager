@@ -1,6 +1,6 @@
 import nexiiData from "./nexiiData";
 import playerData from "./playerData";
-import scenarios from "./scenarioData";
+import allScenarios from "./scenariosData";
 import therosCards from "./therosCardSets";
 const threatDeck = therosCards.filter((card) => card.type !== "Instant");
 const trickDeck = therosCards.filter((card) => card.type === "Instant");
@@ -29,11 +29,11 @@ const gameData = {
       title: "Beginner Campaign",
       finalScenario: 3,
       description: "A simple way to learn the rules.",
-      scenarios,
+      scenarios: allScenarios[0],
       victory:
         "Congratulations! You're on your way to becoming a Voyager MtG veteran!",
     },
-    gameStatus: "playing", //flag string
+    gameStatus: "init", //flag string
     currentScenario: 1, //marker number for progress through campaign
     startingLife: [20, 20, 20],
     startingPoison: [0, 0, 0],
