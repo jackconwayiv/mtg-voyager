@@ -1,5 +1,4 @@
 import _ from "lodash";
-import allCampaigns from "../dataFiles/campaignsData";
 import nexiiData from "../dataFiles/nexiiData";
 import shuffleCards from "../functions/shuffleCards";
 
@@ -125,7 +124,7 @@ function reducer(state, action) {
       break;
     case "startNewCampaign":
       newState.campaign.currentScenario = 1;
-      newState.campaign.details = allCampaigns[action.payload.campaignId - 1];
+      newState.campaign.details = action.payload.campaign;
       newState.nexii = fetchNewNexii(newState);
       newState.campaign.gameStatus = "campaign";
       break;

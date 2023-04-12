@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import allCampaigns from "../dataFiles/campaignsData";
 const Setup = ({ state, dispatch }) => {
-  const [campaign, setCampaign] = useState({});
+  const [selectedCampaign, setSelectedCampaign] = useState({});
+  //when does campaign get initialized?
+
+  const handleCampaignChange = (e) => {
+    setSelectedCampaign(allCampaigns[e.target.value]);
+  };
+
+  useEffect(() => {
+    setSelectedCampaign(allCampaigns[0]);
+  }, []);
+
   return (
     <div>
-      <select>
+      <p>State is {JSON.stringify(selectedCampaign)}</p>
+      <label htmlFor="campaign">Choose a campaign:</label>
+      <select
+        value={allCampaigns.indexOf(selectedCampaign)}
+        onChange={(e) => handleCampaignChange(e)}
+      >
         {allCampaigns.map((campaign) => {
           return (
-            <option value={"campaign"} type={"campaign"} key={campaign.id}>
+            <option key={campaign.id} value={allCampaigns.indexOf(campaign)}>
               {campaign.title}
             </option>
           );
@@ -21,7 +36,10 @@ const Setup = ({ state, dispatch }) => {
       <div>
         <button
           onClick={() =>
-            dispatch({ type: "startNewCampaign", payload: { campaignId: 2 } })
+            dispatch({
+              type: "startNewCampaign",
+              payload: { campaign: selectedCampaign },
+            })
           }
         >
           New Campaign
@@ -39,7 +57,6 @@ const Setup = ({ state, dispatch }) => {
         scenarios, current and final scenario, starting life and poison, setup
         turns, round, won, and lost
       </p>
-      <div>{JSON.stringify(state)}</div>
     </div>
   );
 };
