@@ -3,7 +3,7 @@ import scenarios from "./scenariosData";
 const allCampaigns = [
   {
     id: 1,
-    startedOn: "",
+    startedDate: "",
     title: "Beginner Campaign",
     finalScenario: 3,
     description: "A simple way to learn the rules.",
@@ -13,7 +13,7 @@ const allCampaigns = [
   },
   {
     id: 2,
-    startedOn: "",
+    startedDate: "",
     title: "Intermediate Campaign",
     finalScenario: 3,
     description: "A more intermediate way to enjoy this game.",

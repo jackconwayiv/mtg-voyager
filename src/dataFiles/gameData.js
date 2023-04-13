@@ -35,6 +35,7 @@ const gameData = {
     },
     gameStatus: "init", //flag string
     currentScenario: 1, //marker number for progress through campaign
+    numberOfPlayers: 3,
     startingLife: [20, 20, 20],
     startingPoison: [0, 0, 0],
     setupTurns: 3,
@@ -42,11 +43,13 @@ const gameData = {
     playersTurn: true,
     won: false,
     lost: false,
+    wins: 0,
+    losses: 0,
   },
   archive: [
     {
       campaignId: 1,
-      dateStarted: "date",
+      startedDate: "date",
       playersData: [
         {
           name: "billy",

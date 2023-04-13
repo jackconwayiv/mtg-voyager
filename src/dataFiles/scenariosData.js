@@ -24,6 +24,7 @@ const allScenarios = {
         "The farmlands are under attack! Kill the monsters and save the farmhands!",
       wonText:
         "The farmers are eternally grateful and bake you a pumpkin pie in thanks!",
+      completedDate: "",
     },
     {
       id: 2,
@@ -35,6 +36,7 @@ const allScenarios = {
         "A deep dark forest sprawls out between you and the cave which is the source of tee monsters.",
       wonText:
         "After a grueling journey, you've finally reached your destination -- the mouth of the monsters' lair!",
+      completedDate: "",
     },
     {
       id: 3,
@@ -45,6 +47,7 @@ const allScenarios = {
       beforeText: "The cave is spooky. Are you sure you're up to the task?",
       wonText:
         "Well done! You've rid the cavern of monsters! The locals will be safe at last!",
+      completedDate: "",
     },
   ],
   camp2: [
@@ -58,6 +61,7 @@ const allScenarios = {
         "The farmlands are under attack! Kill the monsters and save the farmhands!",
       wonText:
         "The farmers are eternally grateful and bake you a pumpkin pie in thanks!",
+      completedDate: "",
     },
     {
       id: 2,
@@ -69,6 +73,7 @@ const allScenarios = {
         "A deep dark forest sprawls out between you and the cave which is the source of tee monsters.",
       wonText:
         "After a grueling journey, you've finally reached your destination -- the mouth of the monsters' lair!",
+      completedDate: "",
     },
     {
       id: 3,
@@ -79,6 +84,7 @@ const allScenarios = {
       beforeText: "The cave is spooky. Are you sure you're up to the task?",
       wonText:
         "Well done! You've rid the cavern of monsters! The locals will be safe at last!",
+      completedDate: "",
     },
   ],
 };
