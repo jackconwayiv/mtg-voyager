@@ -89,7 +89,7 @@ const Player = ({ player, dispatch }) => {
     >
       <div className="innerPlayerCard">
         <div className="playerTitleColumn">
-          <span className="playerName boldened">{player.name}</span>
+          <span className="playerName boldened">{player.name || "Anon"}</span>
         </div>
         <div className="resourceColumn">
           {player && player.resources && renderResources(player, "left")}
@@ -100,8 +100,8 @@ const Player = ({ player, dispatch }) => {
       </div>
       <div className="commanderDetails">
         <div className="commanderTax">
-          <span className="finePrint">{player.commander}</span>
-          {player && player.commander && renderResources(player, "taxA")}
+          <span className="finePrint">{player.commander || "Commander"}</span>
+          {player && renderResources(player, "taxA")}
         </div>
         <div className="commanderTax">
           <span className="finePrint">{player.commanderB || " "}</span>

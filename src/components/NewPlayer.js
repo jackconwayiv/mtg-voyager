@@ -1,64 +1,47 @@
-import { useEffect, useState } from "react";
-
 const NewPlayer = ({ dispatch, players, playerNumber }) => {
-  const [playerName, setPlayerName] = useState("");
-  const [playerColor, setPlayerColor] = useState("");
-  const [playerCmdr, setPlayerCmdr] = useState("");
-  const [playerCmdrB, setPlayerCmdrB] = useState("");
+  const player = players[playerNumber - 1];
+  const newPlayer = { ...player };
 
-  useEffect(() => {
-    if (playerNumber === 1) setPlayerColor("red");
-    if (playerNumber === 2) setPlayerColor("white");
-    if (playerNumber === 3) setPlayerColor("blue");
-  }, [playerNumber]);
-
-  const handleClick = () => {
-    const newPlayer = { playerName, playerColor, playerCmdr, playerCmdrB };
-    dispatch({ type: "addPlayer", payload: { playerNumber, newPlayer } });
+  const handleUpdate = () => {
+    dispatch({
+      type: "updatePlayer",
+      payload: { playerNumber, newPlayer },
+    });
   };
 
   return (
-    <div className={playerColor}>
-      <p>red or green light for whether its saved or not...</p>
-      <div
-        className={
-          playerName === players[playerNumber - 1].name &&
-          playerColor === players[playerNumber - 1].faction &&
-          playerCmdr === players[playerNumber - 1].commander &&
-          playerCmdrB === players[playerNumber - 1].commanderB
-            ? "green"
-            : "red"
-        }
-      >
-        STATUS CHECK
-      </div>
+    <div className={player.faction}>
       <h2>Player {playerNumber}</h2>
       Name:
       <input
-        value={playerName}
+        value={player.name}
         onChange={(e) => {
-          setPlayerName(e.target.value);
+          newPlayer.name = e.target.value;
+          handleUpdate();
         }}
       ></input>
       Commander:
       <input
-        value={playerCmdr}
+        value={player.commander}
         onChange={(e) => {
-          setPlayerCmdr(e.target.value);
+          newPlayer.commander = e.target.value;
+          handleUpdate();
         }}
       ></input>
       Partner or Signature Spell (leave blank for none):
       <input
-        value={playerCmdrB}
+        value={player.commanderB}
         onChange={(e) => {
-          setPlayerCmdrB(e.target.value);
+          newPlayer.commanderB = e.target.value;
+          handleUpdate();
         }}
       ></input>
       Color:
       <select
-        value={playerColor}
+        value={player.faction}
         onChange={(e) => {
-          setPlayerColor(e.target.value);
+          newPlayer.faction = e.target.value;
+          handleUpdate(e);
         }}
       >
         <option value={"white"}>White</option>
@@ -68,7 +51,6 @@ const NewPlayer = ({ dispatch, players, playerNumber }) => {
         <option value={"green"}>Green</option>
         <option value={"colorless"}>Colorless</option>
       </select>
-      <button onClick={() => handleClick()}>Save Player</button>
     </div>
   );
 };

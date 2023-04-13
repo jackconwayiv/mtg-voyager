@@ -25,6 +25,7 @@ const allScenarios = {
       wonText:
         "The farmers are eternally grateful and bake you a pumpkin pie in thanks!",
       completedDate: "",
+      attempts: 0,
     },
     {
       id: 2,
@@ -37,6 +38,7 @@ const allScenarios = {
       wonText:
         "After a grueling journey, you've finally reached your destination -- the mouth of the monsters' lair!",
       completedDate: "",
+      attempts: 0,
     },
     {
       id: 3,
@@ -48,6 +50,7 @@ const allScenarios = {
       wonText:
         "Well done! You've rid the cavern of monsters! The locals will be safe at last!",
       completedDate: "",
+      attempts: 0,
     },
   ],
   camp2: [
@@ -62,6 +65,7 @@ const allScenarios = {
       wonText:
         "The farmers are eternally grateful and bake you a pumpkin pie in thanks!",
       completedDate: "",
+      attempts: 0,
     },
     {
       id: 2,
@@ -74,6 +78,7 @@ const allScenarios = {
       wonText:
         "After a grueling journey, you've finally reached your destination -- the mouth of the monsters' lair!",
       completedDate: "",
+      attempts: 0,
     },
     {
       id: 3,
@@ -85,6 +90,7 @@ const allScenarios = {
       wonText:
         "Well done! You've rid the cavern of monsters! The locals will be safe at last!",
       completedDate: "",
+      attempts: 0,
     },
   ],
 };

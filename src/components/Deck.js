@@ -3,7 +3,6 @@ import Card from "./Card";
 import CardBar from "./CardBar";
 const Deck = ({ deck, deckType, dispatch }) => {
   const moveCard = (cardToMove, zoneFrom, zoneTo) => {
-    console.log(`Moving ${cardToMove.name} from ${zoneFrom} to ${zoneTo}`);
     dispatch({
       type: "moveCard",
       payload: { cardToMove, deckType, zoneFrom, zoneTo },

@@ -4,12 +4,10 @@ import shuffleCards from "../functions/shuffleCards";
 
 const checkIfLost = (players) => {
   const filtered = players.filter((player) => player.resources.life === 0);
-  console.log(filtered);
   return filtered.length === players.length;
 };
 const checkIfWon = (nexii) => {
   const filtered = nexii.filter((nexus) => nexus.life === 0);
-  console.log(filtered);
   return filtered.length === nexii.length;
 };
 
@@ -120,21 +118,29 @@ function reducer(state, action) {
     case "archiveCampaign":
       newState.campaign.currentScenario = 0;
       newState.campaign.gameStatus = "init";
+      const archivedCampaign = {
+        campaignId: newState.campaign.details.id,
+        startedDate: newState.campaign.startedDate,
+        playersData: [{}, {}, {}],
+        scenariosData: [{}, {}, {}],
+      };
+      newState.archive = [archivedCampaign, ...newState.archive];
       //push new campaign record object to archive array
       break;
     case "startNewCampaign":
       newState.campaign.currentScenario = 1;
       newState.campaign.details = action.payload.campaign;
       newState.nexii = fetchNewNexii(newState);
+      newState.campaign.startedDate = Date.now();
       newState.campaign.gameStatus = "campaign";
       break;
-    case "addPlayer":
+    case "updatePlayer":
       const newPlayer = {
         id: action.payload.playerNumber,
-        name: action.payload.newPlayer.playerName,
-        commander: action.payload.newPlayer.playerCmdr,
-        commanderB: action.payload.newPlayer.playerCmdrB,
-        faction: action.payload.newPlayer.playerColor,
+        name: action.payload.newPlayer.name,
+        commander: action.payload.newPlayer.commander,
+        commanderB: action.payload.newPlayer.commanderB,
+        faction: action.payload.newPlayer.faction,
         resources: {
           life: 20,
           woe: 0,
@@ -148,15 +154,33 @@ function reducer(state, action) {
       };
       newState.players[action.payload.playerNumber - 1] = newPlayer;
       break;
+    // case "addPlayer":
+    //   const newPlayer = {
+    //     id: action.payload.playerNumber,
+    //     name: action.payload.newPlayer.playerName,
+    //     commander: action.payload.newPlayer.playerCmdr,
+    //     commanderB: action.payload.newPlayer.playerCmdrB,
+    //     faction: action.payload.newPlayer.playerColor,
+    //     resources: {
+    //       life: 20,
+    //       woe: 0,
+    //       weal: 0,
+    //       poison: 0,
+    //       energy: 0,
+    //       xp: 0,
+    //       taxA: 0,
+    //       taxB: 0,
+    //     },
+    //   };
+    //   newState.players[action.payload.playerNumber - 1] = newPlayer;
+    //   break;
     case "winScenario":
       newState.campaign.startingLife = state.players.map(
         (player) => player.resources.life,
       );
-      console.log("lifes: ", newState.campaign.startingLife);
       newState.campaign.startingPoison = state.players.map(
         (player) => player.resources.poison,
       );
-      console.log("poisons: ", newState.campaign.startingPoison);
       //could pull this out into its own function since it's used on win and on lose
       newState.players.forEach((player) =>
         Object.keys(player.resources).forEach((resource) => {
@@ -165,11 +189,9 @@ function reducer(state, action) {
           }
         }),
       );
-      console.log(newState.players[0].resources);
       if (newState.campaign.setupTurns > 3) newState.campaign.setupTurns -= 1;
-      console.log("setup turns: ", newState.campaign.setupTurns);
       newState.campaign.round = 0;
-      console.log("round is ", newState.campaign.round);
+      newState.campaign.wins += 1;
       newState.campaign.gameStatus = "won";
       newState.campaign.won = false;
       newState.campaign.lost = false;
@@ -180,7 +202,6 @@ function reducer(state, action) {
         player.resources.poison =
           newState.campaign.startingPoison[player.id - 1];
       });
-      console.log(newState.players[0].resources);
       //could pull this out since it's used on win and on lose
       newState.players.forEach((player) =>
         Object.keys(player.resources).forEach((resource) => {
@@ -190,6 +211,8 @@ function reducer(state, action) {
         }),
       );
       newState.campaign.setupTurns += 1;
+      newState.campaign.losses += 1;
+      newState.campaign.round = 0;
       newState.nexii = fetchNewNexii(newState); //this may not be needed, added it due to dev testing setup
       newState.campaign.gameStatus = "lost";
       newState.campaign.won = false;
@@ -198,30 +221,8 @@ function reducer(state, action) {
     default:
       break;
   }
-  console.dir(newState.trickDeck);
   return newState;
 }
 export default reducer;
 
-//triggerWon:
-//snapshot player life and player poison
-//reset weal, woe, energy, xp, taxA, and taxB, AND round to 0 upon winClick
-//increment setupTurns down (if not 3)
-//advance campaign.currentScenario
-//set gameStatus
-
-//triggerLost:
-//reset starting life and poison to previous snapshot
-//reset weal, woe, energy, xp, taxA, and taxB, AND round to 0 upon loseClick
-//increment setup turns up
-//set gameStatus
-
-//setup steps:
-//populatePlayerArray (on create campaign)
-//populate campaign.scenarios (on create campaign)
-//when does player life and poison get populated from startingLife snapshot?
-
-//advance round:
-//populateNexiiArray (on advance round)
-//populateThreatDeck (shuffle first) (on advance round)
-//populateTrickDeck (shuffle first) (on advance round)
+//populate cardsets based on nexii?

@@ -36,6 +36,7 @@ const gameData = {
     gameStatus: "init", //flag string
     currentScenario: 1, //marker number for progress through campaign
     numberOfPlayers: 3,
+    startedDate: 1681427182957,
     startingLife: [20, 20, 20],
     startingPoison: [0, 0, 0],
     setupTurns: 3,

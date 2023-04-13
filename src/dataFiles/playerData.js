@@ -1,12 +1,12 @@
 const playerData = [
   {
     id: 1,
-    name: "Bartholomew",
-    commander: "Kiora, Capsizer of Ships",
-    commanderB: "Rampant Growth",
-    faction: "blue",
+    name: "Timmy",
+    commander: "Animar",
+    commanderB: "",
+    faction: "red",
     resources: {
-      life: 2,
+      life: 20,
       woe: 0,
       weal: 0,
       poison: 0,
@@ -18,12 +18,12 @@ const playerData = [
   },
   {
     id: 2,
-    name: "Alexandria",
+    name: "Johnny",
     commander: "Huatli, Radiant Champion",
     commanderB: "Travel Preparations",
     faction: "white",
     resources: {
-      life: 2,
+      life: 20,
       woe: 0,
       weal: 0,
       poison: 0,
@@ -35,12 +35,12 @@ const playerData = [
   },
   {
     id: 3,
-    name: "Sebastian",
+    name: "Spike",
     commander: "Florian Voldaren",
-    commanderB: null,
-    faction: "red",
+    commanderB: "",
+    faction: "blue",
     resources: {
-      life: 2,
+      life: 20,
       woe: 0,
       weal: 0,
       poison: 0,
