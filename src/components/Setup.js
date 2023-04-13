@@ -33,6 +33,7 @@ const Setup = ({ state, dispatch }) => {
       <label htmlFor="numberOfPlayers">Choose number of players:</label>
       <select
         value={numberOfPlayers}
+        disabled={true}
         onChange={(e) => setNumberOfPlayers(e.target.value)}
       >
         <option key={1} value={1}>
@@ -53,16 +54,31 @@ const Setup = ({ state, dispatch }) => {
       {/* allow players to reuse previous player objects? player presets/preferences? */}
       <div>
         <div>
-          <NewPlayer key={1} dispatch={dispatch} playerNumber={1} />
+          <NewPlayer
+            key={1}
+            dispatch={dispatch}
+            players={state.players}
+            playerNumber={1}
+          />
         </div>
         {numberOfPlayers > 1 && (
           <div>
-            <NewPlayer key={2} dispatch={dispatch} playerNumber={2} />
+            <NewPlayer
+              key={2}
+              dispatch={dispatch}
+              players={state.players}
+              playerNumber={2}
+            />
           </div>
         )}
         {numberOfPlayers > 2 && (
           <div>
-            <NewPlayer key={3} dispatch={dispatch} playerNumber={3} />
+            <NewPlayer
+              key={3}
+              dispatch={dispatch}
+              players={state.players}
+              playerNumber={3}
+            />
           </div>
         )}
         Number of Players{" "}

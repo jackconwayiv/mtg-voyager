@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const NewPlayer = ({ dispatch, playerNumber }) => {
+const NewPlayer = ({ dispatch, players, playerNumber }) => {
   const [playerName, setPlayerName] = useState("");
   const [playerColor, setPlayerColor] = useState("");
   const [playerCmdr, setPlayerCmdr] = useState("");
@@ -12,9 +12,26 @@ const NewPlayer = ({ dispatch, playerNumber }) => {
     if (playerNumber === 3) setPlayerColor("blue");
   }, [playerNumber]);
 
+  const handleClick = () => {
+    const newPlayer = { playerName, playerColor, playerCmdr, playerCmdrB };
+    dispatch({ type: "addPlayer", payload: { playerNumber, newPlayer } });
+  };
+
   return (
     <div className={playerColor}>
       <p>red or green light for whether its saved or not...</p>
+      <div
+        className={
+          playerName === players[playerNumber - 1].name &&
+          playerColor === players[playerNumber - 1].faction &&
+          playerCmdr === players[playerNumber - 1].commander &&
+          playerCmdrB === players[playerNumber - 1].commanderB
+            ? "green"
+            : "red"
+        }
+      >
+        STATUS CHECK
+      </div>
       <h2>Player {playerNumber}</h2>
       Name:
       <input
@@ -51,7 +68,7 @@ const NewPlayer = ({ dispatch, playerNumber }) => {
         <option value={"green"}>Green</option>
         <option value={"colorless"}>Colorless</option>
       </select>
-      <button>Save Player</button>
+      <button onClick={() => handleClick()}>Save Player</button>
     </div>
   );
 };

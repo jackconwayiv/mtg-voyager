@@ -128,6 +128,26 @@ function reducer(state, action) {
       newState.nexii = fetchNewNexii(newState);
       newState.campaign.gameStatus = "campaign";
       break;
+    case "addPlayer":
+      const newPlayer = {
+        id: action.payload.playerNumber,
+        name: action.payload.newPlayer.playerName,
+        commander: action.payload.newPlayer.playerCmdr,
+        commanderB: action.payload.newPlayer.playerCmdrB,
+        faction: action.payload.newPlayer.playerColor,
+        resources: {
+          life: 20,
+          woe: 0,
+          weal: 0,
+          poison: 0,
+          energy: 0,
+          xp: 0,
+          taxA: 0,
+          taxB: 0,
+        },
+      };
+      newState.players[action.payload.playerNumber - 1] = newPlayer;
+      break;
     case "winScenario":
       newState.campaign.startingLife = state.players.map(
         (player) => player.resources.life,
