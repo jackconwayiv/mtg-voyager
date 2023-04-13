@@ -154,26 +154,6 @@ function reducer(state, action) {
       };
       newState.players[action.payload.playerNumber - 1] = newPlayer;
       break;
-    // case "addPlayer":
-    //   const newPlayer = {
-    //     id: action.payload.playerNumber,
-    //     name: action.payload.newPlayer.playerName,
-    //     commander: action.payload.newPlayer.playerCmdr,
-    //     commanderB: action.payload.newPlayer.playerCmdrB,
-    //     faction: action.payload.newPlayer.playerColor,
-    //     resources: {
-    //       life: 20,
-    //       woe: 0,
-    //       weal: 0,
-    //       poison: 0,
-    //       energy: 0,
-    //       xp: 0,
-    //       taxA: 0,
-    //       taxB: 0,
-    //     },
-    //   };
-    //   newState.players[action.payload.playerNumber - 1] = newPlayer;
-    //   break;
     case "winScenario":
       newState.campaign.startingLife = state.players.map(
         (player) => player.resources.life,
@@ -192,6 +172,12 @@ function reducer(state, action) {
       if (newState.campaign.setupTurns > 3) newState.campaign.setupTurns -= 1;
       newState.campaign.round = 0;
       newState.campaign.wins += 1;
+      newState.campaign.details.scenarios[
+        newState.campaign.currentScenario - 1
+      ].attempts += 1;
+      newState.campaign.details.scenarios[
+        newState.campaign.currentScenario - 1
+      ].completedDate = Date.now();
       newState.campaign.gameStatus = "won";
       newState.campaign.won = false;
       newState.campaign.lost = false;
@@ -212,6 +198,9 @@ function reducer(state, action) {
       );
       newState.campaign.setupTurns += 1;
       newState.campaign.losses += 1;
+      newState.campaign.details.scenarios[
+        newState.campaign.currentScenario - 1
+      ].attempts += 1;
       newState.campaign.round = 0;
       newState.nexii = fetchNewNexii(newState); //this may not be needed, added it due to dev testing setup
       newState.campaign.gameStatus = "lost";
