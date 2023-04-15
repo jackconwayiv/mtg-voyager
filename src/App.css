@@ -6,6 +6,10 @@
   margin: 1px;
 }
 
+.appContainer {
+  width: 950px;
+}
+
 .white {
   background-color: #efefd0;
 }
@@ -136,7 +140,7 @@ h1 {
   width: 35%;
 }
 
-.nexusName, .playerName {
+.nexusName, .playerName, .scenarioName {
   text-transform: uppercase;
 }
 
@@ -318,4 +322,34 @@ a {
 .zoneButton {
   padding: 1px;
   margin: 1px;
+}
+
+.newPlayersContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.newPlayer {
+  width: 33%;
+  border: 1px black solid;
+}
+.newPlayerCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.scenarioCardContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.scenarioCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 170px;
+  width: 170px;
+  border: 1px black solid;
 }

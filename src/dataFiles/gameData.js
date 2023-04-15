@@ -34,7 +34,7 @@ const gameData = {
         "Congratulations! You're on your way to becoming a Voyager MtG veteran!",
     },
     gameStatus: "init", //flag string
-    currentScenario: 1, //marker number for progress through campaign
+    currentScenario: 2, //marker number for progress through campaign
     numberOfPlayers: 3,
     startedDate: 1681427182957,
     startingLife: [20, 20, 20],

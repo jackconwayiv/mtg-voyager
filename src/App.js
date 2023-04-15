@@ -17,7 +17,7 @@ function App() {
   //need a new component for init, a campaign chooser menu
 
   return (
-    <>
+    <div className="appContainer">
       <div className="navWrapper">
         <span className="title">
           <Navbar />
@@ -50,7 +50,7 @@ function App() {
           />
         )}
       </div>
-    </>
+    </div>
   );
 }
 

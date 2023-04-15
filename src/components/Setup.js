@@ -10,50 +10,72 @@ const Setup = ({ state, dispatch }) => {
     setSelectedCampaign(allCampaigns[e.target.value]);
   };
 
+  const CheckIfReady = () => {
+    return (
+      state.players[0].name &&
+      state.players[1].name &&
+      state.players[2].name &&
+      state.players[0].commander &&
+      state.players[1].commander &&
+      state.players[2].commander
+    );
+  };
+
   useEffect(() => {
     setSelectedCampaign(allCampaigns[0]);
   }, []);
 
   return (
     <div>
-      <h1>Create a New Voyager MtG Campaign:</h1>
-      <label htmlFor="campaign">Choose a campaign:</label>
-      <select
-        value={allCampaigns.indexOf(selectedCampaign)}
-        onChange={(e) => handleCampaignChange(e)}
-      >
-        {allCampaigns.map((campaign) => {
-          return (
-            <option key={campaign.id} value={allCampaigns.indexOf(campaign)}>
-              {campaign.title}
-            </option>
-          );
-        })}
-      </select>
-      <label htmlFor="numberOfPlayers">Choose number of players:</label>
-      <select
-        value={numberOfPlayers}
-        disabled={true}
-        onChange={(e) => setNumberOfPlayers(e.target.value)}
-      >
-        <option key={1} value={1}>
-          1
-        </option>
-        <option key={2} value={2}>
-          2
-        </option>
-        <option key={3} value={3}>
-          3
-        </option>
-      </select>
-      <p>
-        {selectedCampaign.description} Length: {selectedCampaign.finalScenario}{" "}
-        scenarios.
-      </p>
-
-      {/* allow players to reuse previous player objects? player presets/preferences? */}
       <div>
+        <h1>Create a New Voyager MtG Campaign</h1>
+      </div>
+      <div className="newPlayersContainer">
         <div>
+          <p>
+            <label htmlFor="campaign">Choose a campaign:</label>
+            <select
+              value={allCampaigns.indexOf(selectedCampaign)}
+              onChange={(e) => handleCampaignChange(e)}
+            >
+              {allCampaigns.map((campaign) => {
+                return (
+                  <option
+                    key={campaign.id}
+                    value={allCampaigns.indexOf(campaign)}
+                  >
+                    {campaign.title}
+                  </option>
+                );
+              })}
+            </select>
+          </p>
+          <p>
+            {selectedCampaign.description} Length:{" "}
+            {selectedCampaign.finalScenario} scenarios.
+          </p>
+        </div>
+        <div>
+          <label htmlFor="numberOfPlayers">Choose number of players:</label>
+          <select
+            value={numberOfPlayers}
+            disabled={true}
+            onChange={(e) => setNumberOfPlayers(e.target.value)}
+          >
+            <option key={1} value={1}>
+              1
+            </option>
+            <option key={2} value={2}>
+              2
+            </option>
+            <option key={3} value={3}>
+              3
+            </option>
+          </select>
+        </div>
+      </div>
+      <div className="newPlayersContainer">
+        <div className="newPlayer">
           <NewPlayer
             key={1}
             dispatch={dispatch}
@@ -62,7 +84,7 @@ const Setup = ({ state, dispatch }) => {
           />
         </div>
         {numberOfPlayers > 1 && (
-          <div>
+          <div className="newPlayer">
             <NewPlayer
               key={2}
               dispatch={dispatch}
@@ -72,7 +94,7 @@ const Setup = ({ state, dispatch }) => {
           </div>
         )}
         {numberOfPlayers > 2 && (
-          <div>
+          <div className="newPlayer">
             <NewPlayer
               key={3}
               dispatch={dispatch}
@@ -81,14 +103,14 @@ const Setup = ({ state, dispatch }) => {
             />
           </div>
         )}
-        Number of Players{" "}
       </div>
       <div>
-        <p>
+        {/* <p>
           This button is disabled if there aren't matching number of saved
           players and number of players in the game.
-        </p>
+        </p> */}
         <button
+          disabled={!CheckIfReady()}
           onClick={() =>
             dispatch({
               type: "startNewCampaign",

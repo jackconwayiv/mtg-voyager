@@ -4,7 +4,7 @@ const nexiiData = [
     name: "Nicol Bolas",
     colors: "UBR",
     faction: "black",
-    life: 10,
+    life: 5,
     setup: "During setup, each player starts with -1 card in hand.",
     rules:
       "On enemy upkeep, a random eligible player sacrifices a creature (or noncreature) permanent.",
@@ -18,7 +18,7 @@ const nexiiData = [
     name: "Baral",
     colors: "U",
     faction: "blue",
-    life: 14,
+    life: 5,
     setup: "During setup, each player starts with -1 card in hand.",
     rules:
       "On enemy upkeep, a random eligible player sacrifices a creature (or noncreature) permanent.",
@@ -32,7 +32,7 @@ const nexiiData = [
     name: "Vraska",
     colors: "BG",
     faction: "green",
-    life: 20,
+    life: 5,
     setup: "During setup, each player starts with -1 card in hand.",
     rules:
       "On enemy upkeep, a random eligible player sacrifices a creature (or noncreature) permanent.",
@@ -46,7 +46,7 @@ const nexiiData = [
     name: "Emrakul",
     colors: "C",
     faction: "colorless",
-    life: 2,
+    life: 5,
     setup: "During setup, each player starts with -1 card in hand.",
     rules:
       "On enemy upkeep, a random eligible player sacrifices a creature (or noncreature) permanent.",
@@ -60,7 +60,7 @@ const nexiiData = [
     name: "Crimson Cretin",
     colors: "R",
     faction: "red",
-    life: 2,
+    life: 5,
     setup: "During setup, each player starts with -1 card in hand.",
     rules:
       "On enemy upkeep, a random eligible player sacrifices a creature (or noncreature) permanent.",
@@ -75,7 +75,7 @@ const nexiiData = [
     name: "Alabaster Baddie",
     colors: "W",
     faction: "white",
-    life: 2,
+    life: 5,
     setup: "During setup, each player starts with -1 card in hand.",
     rules:
       "On enemy upkeep, a random eligible player sacrifices a creature (or noncreature) permanent.",

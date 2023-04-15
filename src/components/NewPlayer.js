@@ -11,46 +11,58 @@ const NewPlayer = ({ dispatch, players, playerNumber }) => {
 
   return (
     <div className={player.faction}>
-      <h2>Player {playerNumber}</h2>
-      Name:
-      <input
-        value={player.name}
-        onChange={(e) => {
-          newPlayer.name = e.target.value;
-          handleUpdate();
-        }}
-      ></input>
-      Commander:
-      <input
-        value={player.commander}
-        onChange={(e) => {
-          newPlayer.commander = e.target.value;
-          handleUpdate();
-        }}
-      ></input>
-      Partner or Signature Spell (leave blank for none):
-      <input
-        value={player.commanderB}
-        onChange={(e) => {
-          newPlayer.commanderB = e.target.value;
-          handleUpdate();
-        }}
-      ></input>
-      Color:
-      <select
-        value={player.faction}
-        onChange={(e) => {
-          newPlayer.faction = e.target.value;
-          handleUpdate(e);
-        }}
-      >
-        <option value={"white"}>White</option>
-        <option value={"blue"}>Blue</option>
-        <option value={"black"}>Black</option>
-        <option value={"red"}>Red</option>
-        <option value={"green"}>Green</option>
-        <option value={"colorless"}>Colorless</option>
-      </select>
+      <h2>PLAYER {playerNumber}</h2>
+      <div className="newPlayerCard">
+        <span>
+          Name:
+          <input
+            value={player.name}
+            onChange={(e) => {
+              newPlayer.name = e.target.value;
+              handleUpdate();
+            }}
+          ></input>
+        </span>
+        <span>
+          Color:
+          <select
+            value={player.faction}
+            onChange={(e) => {
+              newPlayer.faction = e.target.value;
+              handleUpdate(e);
+            }}
+          >
+            <option value={"white"}>White</option>
+            <option value={"blue"}>Blue</option>
+            <option value={"black"}>Black</option>
+            <option value={"red"}>Red</option>
+            <option value={"green"}>Green</option>
+            <option value={"colorless"}>Colorless</option>
+          </select>
+        </span>
+      </div>
+      <div className="newPlayerCard">
+        <span>
+          Commander:
+          <input
+            value={player.commander}
+            onChange={(e) => {
+              newPlayer.commander = e.target.value;
+              handleUpdate();
+            }}
+          ></input>
+        </span>
+        <span>
+          Partner or Signature Spell:
+          <input
+            value={player.commanderB}
+            onChange={(e) => {
+              newPlayer.commanderB = e.target.value;
+              handleUpdate();
+            }}
+          ></input>
+        </span>
+      </div>
     </div>
   );
 };

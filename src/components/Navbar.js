@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <div>
       <div>
-        <h1>Voyager MtG</h1>
+        <h1>VOYAGER MtG</h1>
       </div>
       <div>
         <img src="../W.svg" alt="white mana symbol" className="mana-symbol" />{" "}

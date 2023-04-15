@@ -19,6 +19,7 @@ const allScenarios = {
       code: "1-1",
       name: "The Farmlands",
       nexii: [1, 2, 3],
+      faction: "white",
       objective: "Defeat All Nexii",
       beforeText:
         "The farmlands are under attack! Kill the monsters and save the farmhands!",
@@ -32,6 +33,7 @@ const allScenarios = {
       code: "1-2",
       name: "The Forest",
       nexii: [4, 5, 6],
+      faction: "green",
       objective: "Defeat All Nexii",
       beforeText:
         "A deep dark forest sprawls out between you and the cave which is the source of tee monsters.",
@@ -45,6 +47,7 @@ const allScenarios = {
       code: "1-3",
       name: "The Cave",
       nexii: [2, 4, 6],
+      faction: "black",
       objective: "Defeat All Nexii",
       beforeText: "The cave is spooky. Are you sure you're up to the task?",
       wonText:
@@ -59,6 +62,7 @@ const allScenarios = {
       code: "2-1",
       name: "The Village",
       nexii: [1, 3, 5],
+      faction: "white",
       objective: "Defeat All Nexii",
       beforeText:
         "The farmlands are under attack! Kill the monsters and save the farmhands!",
@@ -71,7 +75,8 @@ const allScenarios = {
       id: 2,
       code: "2-2",
       name: "The Outskirts",
-      nexii: [2, 2, 2],
+      nexii: [1, 2, 5],
+      faction: "red",
       objective: "Defeat All Nexii",
       beforeText:
         "A deep dark forest sprawls out between you and the cave which is the source of tee monsters.",
@@ -84,7 +89,8 @@ const allScenarios = {
       id: 3,
       code: "2-3",
       name: "The Wilds",
-      nexii: [2, 2, 2],
+      nexii: [3, 4, 6],
+      faction: "green",
       objective: "Defeat All Nexii",
       beforeText: "The cave is spooky. Are you sure you're up to the task?",
       wonText:
