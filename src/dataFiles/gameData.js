@@ -1,9 +1,21 @@
+import cardsFromBRO2 from "../../data/BROcards";
+import shuffleCards from "../functions/shuffleCards";
+import cardsFromBRO from "./cardsFromBRO";
+import cardsFromCORE from "./cardsFromCORE";
 import nexiiData from "./nexiiData";
 import playerData from "./playerData";
 import allScenarios from "./scenariosData";
 import therosCards from "./therosCardSets";
-const threatDeck = therosCards.filter((card) => card.type !== "Instant");
-const trickDeck = therosCards.filter((card) => card.type === "Instant");
+const threatDeck = shuffleCards(
+  [...therosCards, ...cardsFromBRO, ...cardsFromCORE, ...cardsFromBRO2].filter(
+    (card) => card.type !== "Instant",
+  ),
+);
+const trickDeck = shuffleCards(
+  [...therosCards, ...cardsFromBRO, ...cardsFromCORE, ...cardsFromBRO2].filter(
+    (card) => card.type === "Instant",
+  ),
+);
 
 const gameData = {
   players: playerData, //an array of player objects
@@ -25,7 +37,6 @@ const gameData = {
   campaign: {
     details: {
       id: 1,
-      startedOn: "",
       title: "Beginner Campaign",
       finalScenario: 3,
       description: "A simple way to learn the rules.",
@@ -34,7 +45,7 @@ const gameData = {
         "Congratulations! You're on your way to becoming a Voyager MtG veteran!",
     },
     gameStatus: "init", //flag string
-    currentScenario: 2, //marker number for progress through campaign
+    currentScenario: 1, //marker number for progress through campaign
     numberOfPlayers: 3,
     startedDate: 1681427182957,
     startingLife: [20, 20, 20],
@@ -51,9 +62,13 @@ const gameData = {
     {
       campaignId: 1,
       startedDate: "date",
+      wins: 0,
+      losses: 0,
+      numberOfPlayers: 3,
       playersData: [
         {
           name: "billy",
+          color: "black",
           commander: "hi",
           commanderB: "hi",
           endingLife: 3,

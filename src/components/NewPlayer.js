@@ -14,7 +14,7 @@ const NewPlayer = ({ dispatch, players, playerNumber }) => {
       <h2>PLAYER {playerNumber}</h2>
       <div className="newPlayerCard">
         <span>
-          Name:
+          <p>Name:</p>
           <input
             value={player.name}
             onChange={(e) => {
@@ -24,7 +24,7 @@ const NewPlayer = ({ dispatch, players, playerNumber }) => {
           ></input>
         </span>
         <span>
-          Color:
+          <p>Color:</p>
           <select
             value={player.faction}
             onChange={(e) => {
@@ -43,7 +43,7 @@ const NewPlayer = ({ dispatch, players, playerNumber }) => {
       </div>
       <div className="newPlayerCard">
         <span>
-          Commander:
+          <p>Commander:</p>
           <input
             value={player.commander}
             onChange={(e) => {
@@ -53,7 +53,7 @@ const NewPlayer = ({ dispatch, players, playerNumber }) => {
           ></input>
         </span>
         <span>
-          Partner or Signature Spell:
+          <p>Partner / Sig. Spell:</p>
           <input
             value={player.commanderB}
             onChange={(e) => {
