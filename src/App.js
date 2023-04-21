@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import "./App.css";
 import Campaign from "./components/Campaign";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Round from "./components/Round";
 import Scenario from "./components/Scenario";
@@ -49,6 +50,9 @@ function App() {
             dispatch={dispatch}
           />
         )}
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

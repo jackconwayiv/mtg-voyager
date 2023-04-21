@@ -1,20 +1,13 @@
-import cardsFromBRO2 from "../../data/BROcards";
 import shuffleCards from "../functions/shuffleCards";
-import cardsFromBRO from "./cardsFromBRO";
-import cardsFromCORE from "./cardsFromCORE";
+import broCards from "./broCards";
 import nexiiData from "./nexiiData";
 import playerData from "./playerData";
 import allScenarios from "./scenariosData";
-import therosCards from "./therosCardSets";
 const threatDeck = shuffleCards(
-  [...therosCards, ...cardsFromBRO, ...cardsFromCORE, ...cardsFromBRO2].filter(
-    (card) => card.type !== "Instant",
-  ),
+  [...broCards].filter((card) => card.type !== "Instant"),
 );
 const trickDeck = shuffleCards(
-  [...therosCards, ...cardsFromBRO, ...cardsFromCORE, ...cardsFromBRO2].filter(
-    (card) => card.type === "Instant",
-  ),
+  [...broCards].filter((card) => card.type === "Instant"),
 );
 
 const gameData = {

@@ -11,6 +11,9 @@
   margin: auto;
 }
 
+.gold {
+  background-color: gold;
+}
 .white {
   background-color: #efefd0;
 }
