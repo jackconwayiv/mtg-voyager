@@ -121,14 +121,6 @@ const Setup = ({ state, dispatch }) => {
           New Campaign
         </button>
       </div>
-      <div>Game settings: format, challenge level (easy, normal, hard)</div>
-      <div>Select a Campaign, or Create a Random Campaign</div>
-      <p>Timestamps campaign create date/time.</p>
-      <p>
-        Populates Campaign object in state: gamestatus, campaign subobject(?),
-        scenarios, current and final scenario, starting life and poison, setup
-        turns, round, won, and lost, wins and losses
-      </p>
     </div>
   );
 };

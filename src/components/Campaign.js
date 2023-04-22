@@ -9,9 +9,10 @@ const Campaign = ({ campaign, dispatch }) => {
 
   return (
     <div>
-      <h1>{campaign.details.title}</h1>
-      <p>{campaign.details.description}</p>
-
+      <div>
+        <h1>{campaign.details.title}</h1>
+        <p>{campaign.details.description}</p>
+      </div>
       {/* should the following be pulled out into a component? */}
       <div className="scenarioCardContainer">
         {campaign.details.scenarios.map((scenario) => {
@@ -67,14 +68,6 @@ const Campaign = ({ campaign, dispatch }) => {
             Conclude & Archive Campaign
           </button>
         )}
-      <p>
-        See the end of scenario data for each previous session. Change (some)
-        details about campaign. Retire early.
-      </p>
-      <p>
-        See the victory text and rewards for the completed campaign. See a
-        scoreboard comparing your previous runs, or other groups' runs?
-      </p>
     </div>
   );
 };

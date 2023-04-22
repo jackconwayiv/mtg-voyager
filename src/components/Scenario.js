@@ -14,8 +14,23 @@ const Scenario = ({ nexii, campaign, dispatch }) => {
       {campaign.gameStatus === "before" && (
         <p>OBJECTIVE: {scenario.objective}</p>
       )}
-      <p>Starting Life Totals</p>
-      <p>Number of Setup Turns</p>
+      <p>
+        Life Totals:{" "}
+        {campaign.startingLife
+          .map((life, i) => {
+            return `Player ${i + 1}: ${life}`;
+          })
+          .join(", ")}
+      </p>
+      <p>
+        Starting Poison:{" "}
+        {campaign.startingPoison
+          .map((poison, i) => {
+            return `Player ${i + 1}: ${poison}`;
+          })
+          .join(", ")}
+      </p>
+      <p>Setup Turns: {campaign.setupTurns}</p>
       {campaign.gameStatus === "won" && <p>{scenario.wonText}</p>}
       {campaign.gameStatus === "before" && (
         <button

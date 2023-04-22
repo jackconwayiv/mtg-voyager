@@ -45,7 +45,7 @@ const Deck = ({ deck, deckType, dispatch }) => {
     <div>
       <div className="deckZonesDisplay">
         <div className="zone library">
-          {" "}
+          {deck.library.length}
           <img
             src="../cardback.jpg"
             alt="cardback"
@@ -55,7 +55,6 @@ const Deck = ({ deck, deckType, dispatch }) => {
               drawCard();
             }}
           />
-          {deck.library.length}
         </div>
         <div className="zone stack">
           {renderCards(deck.stack, "stack", "card")}

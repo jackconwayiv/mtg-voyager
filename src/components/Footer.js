@@ -1,7 +1,7 @@
 import React from "react";
 const Footer = () => {
   return (
-    <div>
+    <div className="footer">
       <p className="finePrint">
         This website is unofficial fan content allowed under the Wizards of the
         Coast Fan Content Policy. Information on this site about Magic: The
