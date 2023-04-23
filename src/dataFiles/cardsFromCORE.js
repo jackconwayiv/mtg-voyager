@@ -1,24 +1,24 @@
-const makeBlankInstantCards = () => {
-  let blankInstantCards = [];
-  for (let x = 0; x < 45; x++) {
-    const blankCard = {
-      id: 9001001 + x,
-      symbol: "🌎",
-      set: "CORE",
-      name: "All Clear",
-      color: "colorless",
-      cost: "0",
-      type: "Instant",
-      text: "No trick.",
-      revealed: true,
-    };
-    blankInstantCards.push(blankCard);
-  }
-  return blankInstantCards;
-};
+// const makeBlankInstantCards = () => {
+//   let blankInstantCards = [];
+//   for (let x = 0; x < 45; x++) {
+//     const blankCard = {
+//       id: 9001001 + x,
+//       symbol: "🌎",
+//       set: "CORE",
+//       name: "All Clear",
+//       color: "colorless",
+//       cost: "0",
+//       type: "Instant",
+//       text: "No trick.",
+//       revealed: true,
+//     };
+//     blankInstantCards.push(blankCard);
+//   }
+//   return blankInstantCards;
+// };
 
 const cardsFromCORE = [
-  ...makeBlankInstantCards(),
+  // ...makeBlankInstantCards(),
   {
     id: 1001001,
     symbol: "🌎",

@@ -1,5 +1,6 @@
 import shuffleCards from "../functions/shuffleCards";
 import broCards from "./broCards";
+import coreInstants from "./coreInstants";
 import nexiiData from "./nexiiData";
 import playerData from "./playerData";
 import allScenarios from "./scenariosData";
@@ -7,7 +8,7 @@ const threatDeck = shuffleCards(
   [...broCards].filter((card) => card.type !== "Instant"),
 );
 const trickDeck = shuffleCards(
-  [...broCards].filter((card) => card.type === "Instant"),
+  [...coreInstants].filter((card) => card.type === "Instant"),
 );
 
 const gameData = {
