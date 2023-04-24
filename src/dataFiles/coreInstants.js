@@ -1,6 +1,6 @@
 const makeBlankInstantCards = () => {
   let blankInstantCards = [];
-  for (let x = 0; x < 48; x++) {
+  for (let x = 0; x < 42; x++) {
     const blankCard = {
       id: 9999999 - x,
       symbol: "🌎",
@@ -145,20 +145,6 @@ const coreInstants = [
     cost: "2BB",
     type: "Instant",
     text: "Encounter a 'Bleeding' enchantment aura token attached to target attacking creature with flash and 'At the beginning of your upkeep, you lose 1 life.'",
-    revealed: true,
-    included: true,
-    overrideDescription: null,
-  },
-  {
-    id: 9999010,
-    symbol: "🌎",
-    set: "core",
-    color: "red",
-    collector_number: "010",
-    name: "Hostile Terrain",
-    cost: "XR",
-    type: "Instant",
-    text: "Deal X damage to target creature, where X is the number of untapped mana permanents you control as this spell is cast.",
     revealed: true,
     included: true,
     overrideDescription: null,
